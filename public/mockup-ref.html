@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPA Dancers v2</title>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+
+:root {
+  --turquoise: #00C9B1;
+  --orange:    #F45E0C;
+  --gold:      #F0B429;
+  --magenta:   #E0157A;
+  --cream:     #FDF6E3;
+  --warm-bg:   #FEF3D0;
+  --dark:      #0E0B06;
+  --text:      #1A0A00;
+  --muted:     #7A5230;
+}
+
+body { font-family: Georgia, serif; background: var(--cream); color: var(--text); overflow-x:hidden; }
+
+/* ─── NAVBAR ─── */
+nav {
+  background: var(--dark);
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 2px solid rgba(240,180,41,0.4);
+}
+
+/* Logo — fiel al logo real: fondo oscuro, EPA en gradiente */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.logo-badge {
+  background: #111;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 5px 12px 5px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+.logo-epa {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #00C9B1 0%, #F0B429 40%, #F45E0C 70%, #E0157A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+  font-family: Georgia, serif;
+}
+.logo-dancers {
+  font-size: 7px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-family: sans-serif;
+  margin-top: 1px;
+}
+
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-links a {
+  color: rgba(255,255,255,0.55);
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  text-decoration: none; font-family: sans-serif;
+}
+.nav-links a:hover { color: var(--turquoise); }
+.nav-wa {
+  width: 38px; height: 38px;
+  background: #25D366; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-ig {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-wa svg, .nav-ig svg { width: 18px; height: 18px; fill: white; }
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--dark);
+  min-height: 520px;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+}
+/* decorative blobs */
+.hero-blob-tq {
+  position:absolute; top:-100px; left:-100px;
+  width:400px; height:400px; border-radius:50%;
+  background: radial-gradient(circle, rgba(0,201,177,0.18) 0%, transparent 65%);
+  pointer-events:none;
+}
+.hero-blob-mg {
+  position:absolute; bottom:-80px; right:200px;
+  width:320px; height:320px; border-radius:50%;
+  background: radial-gradient(circle, rgba(224,21,122,0.15) 0%, transparent 65%);
+  pointer-events:none;
+}
+.hero-blob-or {
+  position:absolute; top:50%; right:0;
+  width:260px; height:260px; border-radius:50%;
+  background: radial-gradient(circle, rgba(244,94,12,0.12) 0%, transparent 65%);
+  pointer-events:none;
+}
+
+.hero-content {
+  flex: 1;
+  padding: 64px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; z-index: 2;
+  max-width: 560px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(240,180,41,0.12);
+  border: 1px solid rgba(240,180,41,0.35);
+  color: var(--gold);
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 25px;
+  font-family: sans-serif; font-weight: 700;
+  margin-bottom: 20px; width: fit-content;
+}
+.hero-title {
+  font-size: 52px; font-weight: 900; line-height: 1.0;
+  color: #fff; margin-bottom: 14px;
+  letter-spacing: -1px;
+}
+.hero-title em { font-style: italic; }
+.t-magenta { color: var(--magenta); }
+.t-turquoise { color: var(--turquoise); }
+.t-gold { color: var(--gold); }
+.t-orange { color: var(--orange); }
+.hero-desc {
+  color: rgba(255,255,255,0.55); font-size: 15px; line-height: 1.7;
+  font-family: sans-serif; margin-bottom: 32px; max-width: 400px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+.btn-primary {
+  background: var(--magenta); color: #fff;
+  padding: 13px 28px; border-radius: 30px;
+  font-weight: 700; font-size: 13px; font-family: sans-serif;
+  box-shadow: 0 6px 24px rgba(224,21,122,0.4);
+  border: none; cursor: pointer; text-decoration: none;
+}
+.btn-outline {
+  border: 2px solid rgba(0,201,177,0.5); color: var(--turquoise);
+  padding: 11px 24px; border-radius: 30px;
+  font-size: 13px; font-family: sans-serif; font-weight: 600;
+  background: transparent; cursor: pointer; text-decoration: none;
+}
+.hero-stats {
+  display: flex; gap: 28px;
+  padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.07);
+}
+.stat-val { display:block; font-size: 24px; font-weight: 900; color: var(--gold); }
+.stat-lbl { font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.3); font-family: sans-serif; }
+
+/* Photo panel */
+.hero-photo {
+  width: 340px; flex-shrink: 0;
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.hero-photo-inner {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, rgba(0,201,177,0.08) 0%, rgba(224,21,122,0.08) 100%);
+  border-left: 1px solid rgba(255,255,255,0.05);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.photo-frame {
+  /* Simulated photo of Alicia & Pedro */
+  width: 260px; height: 340px;
+  border-radius: 16px 16px 0 0;
+  background: linear-gradient(180deg, #2A1F10 0%, #1A1008 100%);
+  overflow: hidden; position: relative;
+  border: 2px solid rgba(255,255,255,0.06);
+  box-shadow: 0 -20px 60px rgba(0,201,177,0.1), 0 -20px 60px rgba(224,21,122,0.08);
+}
+/* Leopard jacket hint on left figure */
+.photo-alicia {
+  position:absolute; bottom:0; left:10px;
+  width:110px; height:220px;
+  background: linear-gradient(180deg,
+    #C9956A 0% 20%,    /* face/hair */
+    #D4956A 20% 25%,   /* neck */
+    #1A1A1A 25% 35%,   /* black top */
+    rgba(160,90,40,0.9) 35% 55%,   /* leopard jacket warm */
+    rgba(200,140,80,0.8) 55% 65%,  /* leopard jacket light */
+    rgba(40,20,5,0.95) 65% 100%   /* trousers */
+  );
+  border-radius:8px 8px 0 0;
+}
+.photo-pedro {
+  position:absolute; bottom:0; right:10px;
+  width:100px; height:240px;
+  background: linear-gradient(180deg,
+    #6B4A30 0% 15%,
+    #4A3520 15% 20%,   /* cap */
+    #5C3D20 20% 28%,
+    #1A1A1A 28% 100%   /* all black */
+  );
+  border-radius:8px 8px 0 0;
+}
+.photo-label {
+  position:absolute; bottom:0; left:0; right:0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+  padding: 16px 12px 10px;
+  text-align:center;
+}
+.photo-names {
+  color:#fff; font-size:11px; font-weight:700; letter-spacing:1px;
+}
+.photo-names span:first-child { color:var(--magenta); }
+.photo-names span:last-child { color:var(--turquoise); }
+
+/* Decorative top bar color stripe */
+.color-stripe {
+  height: 4px;
+  background: linear-gradient(90deg, var(--turquoise) 0%, var(--gold) 33%, var(--orange) 66%, var(--magenta) 100%);
+}
+
+/* ─── SECTION BASE ─── */
+.section { padding: 64px 48px; }
+.section-cream { background: var(--cream); }
+.section-warm  { background: var(--warm-bg); }
+.section-dark  { background: var(--dark); }
+
+.section-label {
+  font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+  font-family: sans-serif; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-title {
+  font-size: 36px; font-weight: 900; line-height: 1.1;
+  margin-bottom: 32px;
+}
+
+/* ─── ABOUT ─── */
+.about-grid { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+.about-text  { flex: 1; min-width: 240px; }
+.about-text p {
+  font-size: 15px; line-height: 1.75; color: var(--muted);
+  font-family: sans-serif; margin-bottom: 14px;
+}
+.about-text strong { color: var(--text); }
+.tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.tag {
+  font-size: 11px; padding: 5px 14px; border-radius: 25px;
+  font-family: sans-serif; font-weight: 600;
+}
+.tag-t { background: rgba(0,201,177,0.12); color:#007A6E; border:1px solid rgba(0,201,177,0.3); }
+.tag-o { background: rgba(244,94,12,0.1);  color:#B83900; border:1px solid rgba(244,94,12,0.25); }
+.tag-m { background: rgba(224,21,122,0.1); color:#A00C58; border:1px solid rgba(224,21,122,0.25); }
+.tag-g { background: rgba(240,180,41,0.1); color:#7A5B00; border:1px solid rgba(240,180,41,0.3); }
+
+.video-card {
+  width: 280px; height: 200px; flex-shrink: 0;
+  background: var(--dark); border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px; position: relative; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.video-card::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(0,201,177,0.1), rgba(224,21,122,0.1));
+}
+.play-btn {
+  width: 56px; height: 56px;
+  background: var(--gold); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+  box-shadow: 0 4px 20px rgba(240,180,41,0.5);
+}
+.play-btn svg { width: 22px; height: 22px; fill: var(--dark); margin-left: 4px; }
+.video-caption { color:rgba(255,255,255,0.4); font-size:10px; font-family:sans-serif; position:relative; z-index:1; }
+
+/* ─── SCHEDULE ─── */
+.schedule-tabs { display: flex; gap: 2px; margin-bottom: 24px; }
+.schedule-tab {
+  padding: 10px 24px; border-radius: 8px 8px 0 0;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  font-family: sans-serif; cursor: pointer;
+}
+.tab-salsa  { background: var(--magenta); color: #fff; }
+.tab-bachata{ background: rgba(0,201,177,0.15); color: var(--turquoise); border:2px solid rgba(0,201,177,0.3); border-bottom:none; }
+
+.schedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px; }
+.sched-card {
+  background: #fff; border-radius: 12px; padding: 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border-top: 3px solid;
+}
+.sched-card-s { border-top-color: var(--magenta); }
+.sched-card-b { border-top-color: var(--turquoise); }
+.sched-type {
+  font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  font-family: sans-serif; margin-bottom: 12px;
+}
+.sched-card-s .sched-type { color: var(--magenta); }
+.sched-card-b .sched-type { color: var(--turquoise); }
+.sched-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid #F0EDE5;
+  font-family: sans-serif;
+}
+.sched-row:last-child { border-bottom: none; }
+.sched-nivel { font-size: 13px; font-weight: 600; color: var(--text); }
+.sched-time  { font-size: 11px; color: var(--muted); }
+
+.prices { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.price-card {
+  background: #fff; border-radius: 14px; padding: 18px 22px; text-align: center;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  border: 2px solid #F0EDE5;
+  min-width: 100px;
+  transition: transform .2s;
+}
+.price-card:hover { transform: translateY(-3px); }
+.price-card.featured {
+  border-color: var(--orange);
+  box-shadow: 0 4px 24px rgba(244,94,12,0.2);
+  background: linear-gradient(160deg, #FFF8F0, #FFF3E0);
+}
+.price-amount { font-size: 26px; font-weight: 900; display: block; color: var(--text); }
+.price-card.featured .price-amount { color: var(--orange); }
+.price-label  { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); font-family: sans-serif; margin-top: 2px; }
+.best-badge {
+  background: var(--orange); color: #fff;
+  font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 25px; font-family: sans-serif;
+  margin-bottom: 6px; display: inline-block;
+}
+
+/* ─── EVENTS ─── */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 4px;
+}
+.event-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color .2s, transform .2s;
+}
+.event-card:hover {
+  border-color: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+.event-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.event-date-badge {
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px; padding: 8px 12px; min-width: 52px;
+  line-height: 1;
+}
+.event-date-day  { font-size: 22px; font-weight: 900; color: #fff; }
+.event-date-month{ font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.4); font-family: sans-serif; margin-top: 2px; }
+.event-type-badge {
+  font-size: 8px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 25px; font-family: sans-serif;
+}
+.badge-taller    { background: rgba(240,180,41,0.15); color: var(--gold);    border: 1px solid rgba(240,180,41,0.3); }
+.badge-congreso  { background: rgba(224,21,122,0.15); color: var(--magenta); border: 1px solid rgba(224,21,122,0.3); }
+.event-name {
+  font-size: 16px; font-weight: 700; color: #fff; line-height: 1.3;
+}
+.event-meta {
+  display: flex; flex-direction: column; gap: 5px;
+}
+.event-meta-row {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; color: rgba(255,255,255,0.45); font-family: sans-serif;
+}
+.event-meta-row svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; flex-shrink: 0; }
+.event-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; font-family: sans-serif;
+  color: var(--turquoise); text-decoration: none;
+  margin-top: auto; padding-top: 4px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.event-cta svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.5; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--dark);
+  border-top: 3px solid;
+  border-image: linear-gradient(90deg, var(--turquoise), var(--gold), var(--orange), var(--magenta)) 1;
+  padding: 48px 48px 36px;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.footer-logo-epa {
+  font-size: 28px; font-weight: 900; font-style: italic;
+  background: linear-gradient(90deg, #00C9B1, #F0B429, #F45E0C, #E0157A);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.footer-sub { color: rgba(255,255,255,0.35); font-size: 11px; font-family: sans-serif; letter-spacing: 1px; }
+.footer-icons { display: flex; gap: 14px; }
+.social-btn {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: transform .2s;
+}
+.social-btn:hover { transform: scale(1.08); }
+.social-btn svg { width: 22px; height: 22px; fill: white; }
+.s-wa { background: #25D366; }
+.s-ig { background: linear-gradient(135deg,#F58529,#DD2A7B,#8134AF); }
+.footer-copy { color: rgba(255,255,255,0.15); font-size: 10px; font-family: sans-serif; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<!-- color stripe top -->
+<div class="color-stripe"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">
+    <div class="logo-badge">
+      <span class="logo-epa">EPA</span>
+      <span class="logo-dancers">Dancers</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Clases</a>
+    <a href="#">Horarios</a>
+    <a href="#">Nosotros</a>
+    <a href="#" class="nav-wa" title="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.84 1.564 5.4L2 22l4.722-1.538A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2z"/></svg>
+    </a>
+    <a href="#" class="nav-ig" title="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob-tq"></div>
+  <div class="hero-blob-mg"></div>
+  <div class="hero-blob-or"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">✦ Escuela de Baile Latino ✦</div>
+    <h1 class="hero-title">
+      <em class="t-magenta">Salsa</em> &amp;<br>
+      <em class="t-turquoise">Bachata</em><br>
+      <span style="font-size:30px; color:rgba(255,255,255,0.85);">con Alicia &amp; Pedro</span>
+    </h1>
+    <p class="hero-desc">
+      Clases grupales e individuales para todos los niveles.<br>
+      Empieza cuando quieras.
+    </p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Ver horarios →</a>
+      <a href="#" class="btn-outline">Contáctanos</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-val">8+</span><span class="stat-lbl">Años</span></div>
+      <div><span class="stat-val">4</span><span class="stat-lbl">Niveles</span></div>
+      <div><span class="stat-val">29€</span><span class="stat-lbl">/mes</span></div>
+      <div><span class="stat-val">12+</span><span class="stat-lbl">Clases/sem</span></div>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="hero-photo-inner">
+      <div class="photo-frame">
+        <div class="photo-alicia"></div>
+        <div class="photo-pedro"></div>
+        <div class="photo-label">
+          <div class="photo-names">
+            <span>Alicia</span> <span style="color:rgba(255,255,255,0.3);">&amp;</span> <span>Pedro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section class="section section-cream">
+  <div class="section-label" style="color:var(--magenta);">
+    <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="var(--magenta)"/></svg>
+    Quiénes somos
+  </div>
+  <h2 class="section-title">Alicia <span style="color:var(--muted);font-weight:400;">&amp;</span> Pedro</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Alicia y Pedro llevan más de 8 años enseñando Salsa y Bachata con un estilo propio: <strong>cercano, divertido y con mucha pasión.</strong>
+      </p>
+      <p>
+        Como parte de <strong>EPA Dancers</strong>, participan regularmente en congresos nacionales e internacionales y forman una comunidad de bailarines de todos los niveles.
+      </p>
+      <p>
+        Tanto si nunca has bailado como si ya tienes experiencia, aquí encontrarás tu sitio.
+      </p>
+      <div class="tags">
+        <span class="tag tag-m">Salsa</span>
+        <span class="tag tag-t">Bachata</span>
+        <span class="tag tag-g">Congresos</span>
+        <span class="tag tag-o">Individuales</span>
+        <span class="tag tag-t">Todos los niveles</span>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="play-btn">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <span class="video-caption">Vídeo bailando</span>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIOS Y PRECIOS -->
+<section class="section section-warm">
+  <div class="section-label" style="color:var(--turquoise);">
+    <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="var(--turquoise)"/></svg>
+    Horarios 2025–26
+  </div>
+  <h2 class="section-title">Clases <span style="color:var(--muted);font-weight:400;">&amp;</span> Precios</h2>
+  <div class="schedule-grid">
+    <div class="sched-card sched-card-s">
+      <div class="sched-type">● Salsa</div>
+      <div class="sched-row"><span class="sched-nivel">Inicio 1</span><span class="sched-time">Lun · 19h–20h</span></div>
+      <div class="sched-row"><span class="sched-nivel">Inicio 2</span><span class="sched-time">Jue · 21h–22h</span></div>
+      <div class="sched-row"><span class="sched-nivel">Intermedio 4</span><span class="sched-time">Jue · 21h–22h</span></div>
+    </div>
+    <div class="sched-card sched-card-b">
+      <div class="sched-type">● Bachata</div>
+      <div class="sched-row"><span class="sched-nivel">Inicio 2</span><span class="sched-time">Jue · 20h–21h</span></div>
+      <div class="sched-row"><span class="sched-nivel">Intermedio 2</span><span class="sched-time">Mar · 19:30h</span></div>
+      <div class="sched-row"><span class="sched-nivel">Intermedio 4</span><span class="sched-time">Mar · 20:30h</span></div>
+    </div>
+  </div>
+  <div class="prices">
+    <div class="price-card"><span class="price-amount">29€</span><span class="price-label">1 curso / mes</span></div>
+    <div class="price-card"><span class="price-amount">49€</span><span class="price-label">2 cursos / mes</span></div>
+    <div class="price-card featured">
+      <div class="best-badge">Más popular</div>
+      <span class="price-amount">64€</span>
+      <span class="price-label">3 cursos / mes</span>
+    </div>
+    <div class="price-card"><span class="price-amount">74.5€</span><span class="price-label">Tarifa plana</span></div>
+  </div>
+</section>
+
+<!-- PRÓXIMOS EVENTOS -->
+<section class="section section-dark">
+  <div class="section-label" style="color:var(--gold);">
+    <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="var(--gold)"/></svg>
+    Agenda
+  </div>
+  <h2 class="section-title" style="color:#fff;">Próximos <span style="color:var(--gold);">Eventos</span></h2>
+
+  <div class="events-grid">
+
+    <!-- Taller 1 -->
+    <div class="event-card">
+      <div class="event-card-top">
+        <div class="event-date-badge">
+          <span class="event-date-day">12</span>
+          <span class="event-date-month">Abr</span>
+        </div>
+        <span class="event-type-badge badge-taller">Taller</span>
+      </div>
+      <div class="event-name">Taller de Salsa On2 — Trabajo de pies</div>
+      <div class="event-meta">
+        <div class="event-meta-row">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Barcelona
+        </div>
+        <div class="event-meta-row">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          18:00h – 20:00h
+        </div>
+      </div>
+      <a href="#" class="event-cta">
+        Más info
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- Congreso 1 -->
+    <div class="event-card">
+      <div class="event-card-top">
+        <div class="event-date-badge">
+          <span class="event-date-day">26</span>
+          <span class="event-date-month">Abr</span>
+        </div>
+        <span class="event-type-badge badge-congreso">Congreso</span>
+      </div>
+      <div class="event-name">Congreso de Salsa &amp; Bachata — Andorra</div>
+      <div class="event-meta">
+        <div class="event-meta-row">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Andorra la Vella
+        </div>
+        <div class="event-meta-row">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          26–28 Abril
+        </div>
+      </div>
+      <a href="#" class="event-cta">
+        Más info
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- Taller 2 -->
+    <div class="event-card">
+      <div class="event-card-top">
+        <div class="event-date-badge">
+          <span class="event-date-day">17</span>
+          <span class="event-date-month">May</span>
+        </div>
+        <span class="event-type-badge badge-taller">Taller</span>
+      </div>
+      <div class="event-name">Taller de Bachata Sensual — Cuerpo y conexión</div>
+      <div class="event-meta">
+        <div class="event-meta-row">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Barcelona
+        </div>
+        <div class="event-meta-row">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          17:00h – 19:00h
+        </div>
+      </div>
+      <a href="#" class="event-cta">
+        Más info
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- Congreso 2 -->
+    <div class="event-card">
+      <div class="event-card-top">
+        <div class="event-date-badge">
+          <span class="event-date-day">07</span>
+          <span class="event-date-month">Jun</span>
+        </div>
+        <span class="event-type-badge badge-congreso">Congreso</span>
+      </div>
+      <div class="event-name">Festival Latino — Actuación de Alicia &amp; Pedro</div>
+      <div class="event-meta">
+        <div class="event-meta-row">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Por confirmar
+        </div>
+        <div class="event-meta-row">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Todo el fin de semana
+        </div>
+      </div>
+      <a href="#" class="event-cta">
+        Más info
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-epa">EPA Dancers</div>
+  <div class="footer-sub">Alicia &amp; Pedro · Escuela de Baile Latino</div>
+  <div class="footer-icons">
+    <div class="social-btn s-wa" title="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.84 1.564 5.4L2 22l4.722-1.538A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2z"/></svg>
+    </div>
+    <div class="social-btn s-ig" title="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 EPA Dancers · Alicia y Pedro</div>
+</footer>
+
+</body>
+</html>
