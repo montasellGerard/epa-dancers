@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 const WA_URL = 'https://wa.me/34600000000'
@@ -182,28 +181,34 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Photo */}
+        {/* Photo — placeholder hasta disponer de foto real */}
         <div className="w-full md:w-[340px] flex-shrink-0 flex items-end justify-center">
           <div
-            className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden"
+            className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-4"
             style={{
-              border: '2px solid rgba(255,255,255,0.06)',
+              border: '2px solid rgba(255,255,255,0.08)',
               boxShadow: '0 0 60px rgba(0,201,177,0.12), 0 0 100px rgba(224,21,122,0.08)',
-              background: 'linear-gradient(160deg, rgba(0,201,177,0.1), rgba(224,21,122,0.1))',
+              background: 'linear-gradient(160deg, rgba(0,201,177,0.07) 0%, rgba(14,11,6,1) 50%, rgba(224,21,122,0.07) 100%)',
             }}
           >
-            <Image
-              src="/alicia-pedro.jpg"
-              alt="Alicia y Pedro — EPA Dancers"
-              fill
-              className="object-cover object-top"
-              priority
-              sizes="(max-width: 768px) 90vw, 340px"
-            />
+            {/* Icono decorativo */}
+            <div
+              className="w-20 h-20 rounded-full flex items-center justify-center"
+              style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+            >
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
+            <p className="font-sans text-[10px] uppercase tracking-[3px] text-center px-6" style={{ color: 'rgba(255,255,255,0.2)' }}>
+              Foto de Alicia & Pedro
+            </p>
+
             {/* Name overlay */}
             <div
               className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-12"
-              style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 100%)' }}
+              style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 100%)' }}
             >
               <p className="font-sans text-xs font-semibold tracking-wide text-center">
                 <span style={{ color: '#E0157A' }}>Alicia</span>
