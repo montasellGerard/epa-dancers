@@ -11,6 +11,9 @@ const YOUTUBE_VIDEO_ID = 'VIDEO_ID'
 const tags = [
   { label: 'Salsa',             color: 'magenta'   },
   { label: 'Bachata',           color: 'turquoise' },
+  { label: 'Timba',             color: 'magenta'   },
+  { label: 'Guaguancó',         color: 'orange'    },
+  { label: 'Afro',              color: 'gold'      },
   { label: 'Congresos',         color: 'gold'      },
   { label: 'Individuales',      color: 'orange'    },
   { label: 'Todos los niveles', color: 'turquoise' },
@@ -26,7 +29,7 @@ const tagStyles: Record<string, React.CSSProperties> = {
 const profiles = [
   {
     name: 'Alicia',
-    role: 'Especialista Salsa On2 & Sensual',
+    role: 'Especialista en Lady Style y Guaguancó',
     colorKey: 'magenta',
     bg: 'rgba(224,21,122,0.06)',
     border: 'rgba(224,21,122,0.18)',
@@ -34,7 +37,7 @@ const profiles = [
   },
   {
     name: 'Pedro',
-    role: 'Instructor Salsa & Bachata Moderna',
+    role: 'Instructor de Salsa y Rumbero',
     colorKey: 'turquoise',
     bg: 'rgba(0,201,177,0.06)',
     border: 'rgba(0,201,177,0.2)',
@@ -132,9 +135,9 @@ export default function About() {
               style={{ borderTop: '1px solid rgba(0,0,0,0.07)' }}
             >
               {[
-                { val: '20+', lbl: 'Congresos' },
-                { val: '6',   lbl: 'Países'    },
-                { val: '8+',  lbl: 'Años'      },
+                { val: '20+',  lbl: 'Congresos'      },
+                { val: '8+',   lbl: 'Años bailando'  },
+                { val: '200+', lbl: 'Alumnos'        },
               ].map((item) => (
                 <div key={item.lbl}>
                   <span className="font-black text-lg" style={{ color: '#F0B429' }}>{item.val}</span>
