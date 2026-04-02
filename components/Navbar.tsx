@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from 'react'
 
 // ─── Links de navegación ─────────────────────────────────────────────────────
-// ⚠️  "Alumnos" se añadirá aquí cuando la sección exista en la página
+// Orden refleja la estructura real de la página: Hero → About → Alumnos → Schedule → Events
 const LINKS = [
   { label: 'Clases',   href: '#clases'   },
-  { label: 'Horarios', href: '#horarios' },
   { label: 'Nosotros', href: '#nosotros' },
+  { label: 'Alumnos',  href: '#alumnos'  },
+  { label: 'Horarios', href: '#horarios' },
   { label: 'Eventos',  href: '#eventos'  },
 ]
 

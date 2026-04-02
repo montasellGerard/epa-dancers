@@ -1,8 +1,9 @@
 export default function Footer() {
   const navLinks = [
     { label: 'Clases',    href: '#clases'    },
-    { label: 'Horarios',  href: '#horarios'  },
     { label: 'Nosotros',  href: '#nosotros'  },
+    { label: 'Alumnos',   href: '#alumnos'   },
+    { label: 'Horarios',  href: '#horarios'  },
     { label: 'Eventos',   href: '#eventos'   },
   ]
 
