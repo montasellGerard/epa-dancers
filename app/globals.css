@@ -9,3 +9,50 @@ body {
   -webkit-font-smoothing: antialiased;
   background: #FDF6E3;
 }
+
+/* ── Accesibilidad ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid #00C9B1;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Animaciones ───────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 6px 24px rgba(224,21,122,0.4); }
+  50%       { box-shadow: 0 8px 40px rgba(224,21,122,0.65); }
+}
+
+@keyframes bounce-y {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── Scrollbar oculta (carrusel testimonios) ───────────────── */
+.scroll-hidden::-webkit-scrollbar { display: none; }
+.scroll-hidden { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Respetar preferencias de movimiento reducido ──────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
