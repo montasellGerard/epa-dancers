@@ -1,53 +1,34 @@
 export type LevelColor = 'inicio' | 'intermedio' | 'avanzado'
+export type DayKey     = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
 
 export interface ClassSlot {
-  level: string
-  day: string
-  time: string
+  level:      string
+  dayKey:     DayKey   // translated via messages.schedule.days.*
+  time:       string
   levelColor: LevelColor
 }
 
 export const schedule: { salsa: ClassSlot[]; bachata: ClassSlot[] } = {
   salsa: [
-    { level: 'Inicio 1',     day: 'Lun', time: '19h–20h',         levelColor: 'inicio'     },
-    { level: 'Inicio 2',     day: 'Mié', time: '19h–20h',         levelColor: 'inicio'     },
-    { level: 'Intermedio 2', day: 'Lun', time: '20h–21h',         levelColor: 'intermedio' },
-    { level: 'Intermedio 4', day: 'Jue', time: '21h–22h',         levelColor: 'intermedio' },
-    { level: 'Avanzado',     day: 'Vie', time: '20h–21:30h',      levelColor: 'avanzado'   },
+    { level: 'Inicio 1',     dayKey: 'mon', time: '19h–20h',      levelColor: 'inicio'     },
+    { level: 'Inicio 2',     dayKey: 'wed', time: '19h–20h',      levelColor: 'inicio'     },
+    { level: 'Intermedio 2', dayKey: 'mon', time: '20h–21h',      levelColor: 'intermedio' },
+    { level: 'Intermedio 4', dayKey: 'thu', time: '21h–22h',      levelColor: 'intermedio' },
+    { level: 'Avanzado',     dayKey: 'fri', time: '20h–21:30h',   levelColor: 'avanzado'   },
   ],
   bachata: [
-    { level: 'Inicio 1',     day: 'Mar', time: '19h–20h',         levelColor: 'inicio'     },
-    { level: 'Inicio 2',     day: 'Jue', time: '20h–21h',         levelColor: 'inicio'     },
-    { level: 'Intermedio 2', day: 'Mar', time: '19:30h–20:30h',   levelColor: 'intermedio' },
-    { level: 'Intermedio 4', day: 'Mar', time: '20:30h–21:30h',   levelColor: 'intermedio' },
-    { level: 'Avanzado',     day: 'Mié', time: '21h–22:30h',      levelColor: 'avanzado'   },
+    { level: 'Inicio 1',     dayKey: 'tue', time: '19h–20h',      levelColor: 'inicio'     },
+    { level: 'Inicio 2',     dayKey: 'thu', time: '20h–21h',      levelColor: 'inicio'     },
+    { level: 'Intermedio 2', dayKey: 'tue', time: '19:30h–20:30h',levelColor: 'intermedio' },
+    { level: 'Intermedio 4', dayKey: 'tue', time: '20:30h–21:30h',levelColor: 'intermedio' },
+    { level: 'Avanzado',     dayKey: 'wed', time: '21h–22:30h',   levelColor: 'avanzado'   },
   ],
 }
 
+// Prices — amounts are fixed, labels/descriptions come from messages.schedule.*
 export const prices = [
-  {
-    amount: '30€',
-    label: '1 curso / mes',
-    description: '1 clase semanal, cualquier estilo',
-    featured: false,
-  },
-  {
-    amount: '50€',
-    label: '2 cursos / mes',
-    description: '2 clases semanales a elegir',
-    featured: false,
-  },
-  {
-    amount: '65€',
-    label: '3 cursos / mes',
-    description: 'El favorito de nuestros alumnos',
-    featured: true,
-    badge: 'Más popular',
-  },
-  {
-    amount: '75€',
-    label: 'Tarifa plana',
-    description: 'Acceso ilimitado a todas las clases',
-    featured: false,
-  },
+  { amount: '30€', msgKey: 'price1', featured: false },
+  { amount: '50€', msgKey: 'price2', featured: false },
+  { amount: '65€', msgKey: 'price3', featured: true  },
+  { amount: '75€', msgKey: 'price4', featured: false },
 ]

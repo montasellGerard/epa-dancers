@@ -5,6 +5,7 @@ export default function Footer() {
     { label: 'Alumnos',   href: '#alumnos'   },
     { label: 'Horarios',  href: '#horarios'  },
     { label: 'Eventos',   href: '#eventos'   },
+    { label: 'Dónde',     href: '#donde'     },
   ]
 
   return (

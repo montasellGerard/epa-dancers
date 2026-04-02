@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "title": "EPA Dancers — Classes de Salsa, Bachata i Timba a Mollet del Vallès | Alícia i Pere",
+    "description": "Escola de ball llatí a Mollet del Vallès. Classes de Salsa, Bachata, Timba, Guaguancó i Afro per a tots els nivells amb Alícia i Pere. Classes grupals i individuals. Comença quan vulguis!"
+  },
+  "skipLink": "Salta al contingut principal",
+  "nav": {
+    "clases": "Classes",
+    "nosotros": "Qui som",
+    "alumnos": "Alumnes",
+    "horarios": "Horaris",
+    "eventos": "Esdeveniments",
+    "donde": "On som",
+    "openMenu": "Obrir menú",
+    "closeMenu": "Tancar menú",
+    "contactWhatsApp": "Contacta'ns per WhatsApp",
+    "followInstagram": "Segueix-nos a Instagram",
+    "instagramHandle": "@aliciaypedro.dancers",
+    "backToTop": "EPA Dancers — torna a l'inici"
+  },
+  "langSwitcher": {
+    "aria": "Canvia l'idioma",
+    "es": "ES",
+    "en": "EN",
+    "ca": "CA"
+  },
+  "hero": {
+    "eyebrow": "Escola de Ball Llatí",
+    "ctaPrimary": "Vull començar!",
+    "ctaSecondary": "Veure horaris",
+    "photoAlt": "Foto d'Alícia i Pere",
+    "statYears": "Anys",
+    "statLevels": "Nivells",
+    "statClasses": "Classes/set",
+    "statStudents": "Alumnes"
+  },
+  "about": {
+    "eyebrow": "Qui som",
+    "p1": "Alícia i Pere porten més de 8 anys ensenyant Salsa i Bachata amb un estil propi:",
+    "p1Bold": "proper, divertit i amb molta passió.",
+    "p2": "Com a part de EPA Dancers, participen regularment en congressos nacionals i internacionals i han format una comunitat de balladors de tots els nivells.",
+    "p3": "Tant si mai has ballat com si ja tens experiència, aquí trobaràs el teu lloc.",
+    "aliciaRole": "Especialista en Lady Style i Guaguancó",
+    "pedroRole": "Instructor de Salsa i Rumbero",
+    "statCongresses": "Congressos",
+    "statYears": "Anys ballant",
+    "statStudents": "Alumnes",
+    "videoSubtitle": "Alícia i Pere ballant",
+    "videoClick": "Fes clic per veure el vídeo",
+    "playVideo": "Reprodueix el vídeo d'Alícia i Pere",
+    "closeVideo": "Tancar vídeo",
+    "doubts": "Tens dubtes?",
+    "writeUs": "Escriu-nos"
+  },
+  "testimonials": {
+    "eyebrow": "Els nostres alumnes",
+    "titleMain": "El que diuen de",
+    "titleHighlight": "nosaltres",
+    "subtitle": "Més de 200 alumnes ja ballen amb Alícia i Pere",
+    "sinceLabel": "A EPA Dancers des de fa",
+    "levelBeginner": "Iniciació",
+    "levelIntermediate": "Intermedi",
+    "levelAdvanced": "Avançat"
+  },
+  "schedule": {
+    "eyebrow": "Horaris 2025–26",
+    "titleMain": "Classes",
+    "titleAmp": "i",
+    "titleSub": "Preus",
+    "salsa": "Salsa",
+    "bachata": "Bachata",
+    "levelInicio": "iniciació",
+    "levelIntermedio": "intermedi",
+    "levelAvanzado": "avançat",
+    "days": {
+      "mon": "Dl",
+      "tue": "Dt",
+      "wed": "Dc",
+      "thu": "Dj",
+      "fri": "Dv",
+      "sat": "Ds",
+      "sun": "Dg"
+    },
+    "pricingDoubts": "Tens dubtes sobre quina tarifa triar?",
+    "pricingCta": "Escriu-nos per WhatsApp",
+    "price1Label": "1 curs / mes",
+    "price1Desc": "1 classe setmanal, qualsevol estil",
+    "price2Label": "2 cursos / mes",
+    "price2Desc": "2 classes setmanals a escollir",
+    "price3Label": "3 cursos / mes",
+    "price3Desc": "El preferit dels nostres alumnes",
+    "price3Badge": "Més popular",
+    "price4Label": "Tarifa plana",
+    "price4Desc": "Accés il·limitat a totes les classes"
+  },
+  "faq": {
+    "eyebrow": "Preguntes freqüents",
+    "titleMain": "Resolem els teus",
+    "titleHighlight": "dubtes",
+    "subtitle": "Si no trobes la teva resposta, escriu-nos per WhatsApp. Sense compromís.",
+    "ctaQuestion": "Tens algun dubte que no és aquí?",
+    "ctaButton": "Pregunta'ns per WhatsApp",
+    "items": {
+      "pareja": {
+        "question": "Cal venir amb parella?",
+        "answer": "No, la gran majoria dels nostres alumnes venen sols. A classe rotem de parella contínuament, així que coneixeràs molta gent i aprendràs a adaptar-te a diferents estils de ball. Venir en parella és benvingut, però mai és obligatori."
+      },
+      "edad": {
+        "question": "Des de quina edat es pot apuntar?",
+        "answer": "Les classes grupals són a partir de 16 anys. Si tens dubtes sobre si és adequat per a tu o algú de la teva família, escriu-nos per WhatsApp i t'orientem sense cap compromís."
+      },
+      "cuando-empezar": {
+        "question": "Puc començar en qualsevol moment de l'any?",
+        "answer": "Sí. Tenim incorporació contínua als grups d'iniciació. No cal esperar l'inici de temporada: pots apuntar-te qualsevol setmana i seguir el ritme des del primer dia."
+      },
+      "ropa": {
+        "question": "Quina roba i calçat necessito?",
+        "answer": "Roba còmoda amb la qual et puguis moure amb llibertat. Per al calçat, l'ideal és una sola llisa que llisqui (sabates de ball o sabatilles de sola prima). Evita les soles de goma gruixuda al principi, dificulten els girs."
+      },
+      "progresion": {
+        "question": "Quant tardaré a aprendre alguna cosa?",
+        "answer": "A les primeres 2-3 classes ja ballaràs els passos bàsics i començaràs a sentir el ritme. La progressió depèn de cada persona, però et prometem que des del primer dia surts amb alguna cosa per practicar a casa."
+      },
+      "individuales": {
+        "question": "Hi ha classes individuals o només grupals?",
+        "answer": "Oferim les dues opcions. Les classes grupals són perfectes per començar i conèixer gent. Les individuals o en parella permeten accelerar la progressió o preparar una coreografia especial. Consulta'ns per WhatsApp."
+      },
+      "pago": {
+        "question": "Com funciona el pagament? Hi ha matrícula?",
+        "answer": "El pagament és mensual i sense matrícula ni permanència. Quatre tarifes segons les teves classes setmanals: 1 classe (30€), 2 classes (50€), 3 classes (65€) o tarifa plana il·limitada (75€). Pots canviar de tarifa cada mes."
+      }
+    }
+  },
+  "gallery": {
+    "eyebrow": "Galeria",
+    "titleMain": "El ball en",
+    "titleHighlight": "acció",
+    "filterAll": "Tots",
+    "filterClase": "Classes",
+    "filterCongreso": "Congressos",
+    "filterActuacion": "Actuacions",
+    "filterTaller": "Tallers",
+    "prev": "Anterior",
+    "next": "Següent",
+    "comingSoon": "Pròximament",
+    "comingSoonFull": "Pròximament · Classes, congressos i actuacions d'Alícia i Pere",
+    "ariaGallery": "Galeria de vídeos",
+    "ariaNav": "Navegació de galeria",
+    "ariaFilter": "Filtra per categoria",
+    "categoryClase": "Classe",
+    "categoryCongreso": "Congrés",
+    "categoryActuacion": "Actuació",
+    "categoryTaller": "Taller"
+  },
+  "events": {
+    "eyebrow": "Agenda",
+    "titleMain": "Pròxims",
+    "titleHighlight": "Esdeveniments",
+    "filterAll": "Tots",
+    "filterTaller": "Tallers",
+    "filterCongreso": "Congressos",
+    "ariaFilter": "Filtrar esdeveniments",
+    "typeCongreso": "Congrés",
+    "typeTaller": "Taller",
+    "finished": "Finalitzat",
+    "emptyText": "No hi ha esdeveniments d'aquest tipus pròximament.",
+    "emptyFollow": "Segueix-nos a Instagram",
+    "emptyEnd": "per no perdre't res.",
+    "moreInfo": "Més info"
+  },
+  "location": {
+    "eyebrow": "On som",
+    "titleMain": "Vine a",
+    "titleHighlight": "ballar amb nosaltres",
+    "subtitle": "Estudi al centre de Mollet del Vallès, molt ben comunicat des de Barcelona.",
+    "addressNote": "⚠️ Adreça provisional — confirmació pendent",
+    "openMaps": "Veure mapa",
+    "ariaMap": "Ubicació de EPA Dancers a Mollet del Vallès",
+    "hoursTitle": "Horari de classes",
+    "howToGetTitle": "Com arribar",
+    "trainTitle": "En tren (Rodalies)",
+    "trainDesc": "Línia R2 o R2N fins a Mollet-Sant Fost. 5 min a peu des de l'estació.",
+    "busTitle": "En autobús",
+    "busDesc": "Línies B20, B21 i B22 des de Barcelona. Parada directa al centre.",
+    "carTitle": "En cotxe",
+    "carDesc": "Sortida Mollet Nord per la B-30. Aparcament gratuït als voltants.",
+    "ctaButton": "Dubtes per arribar? Escriu-nos",
+    "dayMonday": "Dilluns",
+    "dayTuesday": "Dimarts",
+    "dayWednesday": "Dimecres",
+    "dayThursday": "Dijous",
+    "dayFriday": "Divendres"
+  },
+  "cta": {
+    "eyebrow": "Llest per començar?",
+    "titleMain": "La teva primera classe",
+    "titleHighlight": "t'espera",
+    "subtitle": "Uneix-te a més de 200 alumnes que ja gaudeixen de la Salsa, Bachata, Timba i molt més a Mollet del Vallès.",
+    "button": "Reserva per WhatsApp",
+    "note": "Sense compromís · Comença quan vulguis"
+  },
+  "footer": {
+    "tagline": "Alícia i Pere · Escola de Ball Llatí",
+    "locationLabel": "Mollet del Vallès, Barcelona",
+    "sectionsTitle": "Seccions",
+    "followTitle": "Segueix-nos",
+    "hours": "Dl–Dj · 19:00h–22:00h",
+    "copyright": "EPA Dancers · Alícia i Pere",
+    "navClases": "Classes",
+    "navNosotros": "Qui som",
+    "navAlumnos": "Alumnes",
+    "navHorarios": "Horaris",
+    "navEventos": "Esdeveniments",
+    "navDonde": "On som",
+    "ariaWhatsapp": "Contacta'ns per WhatsApp",
+    "ariaInstagram": "Segueix-nos a Instagram"
+  },
+  "whatsapp": {
+    "ariaLabel": "Contacta'ns per WhatsApp",
+    "tooltip": "Escriu-nos"
+  }
+}

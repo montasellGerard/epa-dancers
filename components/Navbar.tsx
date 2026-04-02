@@ -1,28 +1,31 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-
-// ─── Links de navegación ─────────────────────────────────────────────────────
-// Orden refleja la estructura real de la página: Hero → About → Alumnos → Schedule → Events
-const LINKS = [
-  { label: 'Clases',   href: '#clases'   },
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Alumnos',  href: '#alumnos'  },
-  { label: 'Horarios', href: '#horarios' },
-  { label: 'Eventos',  href: '#eventos'  },
-]
+import { useTranslations, useLocale }  from 'next-intl'
+import { useRouter, usePathname }      from '@/navigation'
+import type { Locale }                 from '@/i18n/routing'
 
 const WA_URL = 'https://wa.me/34600000000'
-const IG_URL  = 'https://www.instagram.com/aliciaypedro.dancers/'
+const IG_URL = 'https://www.instagram.com/aliciaypedro.dancers/'
+
+const NAV_IDS = ['clases', 'nosotros', 'alumnos', 'horarios', 'eventos', 'donde'] as const
 
 export default function Navbar() {
+  const t        = useTranslations('nav')
+  const tLang    = useTranslations('langSwitcher')
+  const locale   = useLocale() as Locale
+  const router   = useRouter()
+  const pathname = usePathname()
+
   const [scrolled,  setScrolled]  = useState(false)
   const [open,      setOpen]      = useState(false)
-  const [active,    setActive]    = useState('clases') // sección inicial
+  const [active,    setActive]    = useState<string>('clases')
   const [progress,  setProgress]  = useState(0)
   const ticking = useRef(false)
 
-  // ── Scroll: efecto glass + barra de progreso ──────────────────────────────
+  const LINKS = NAV_IDS.map((id) => ({ id, label: t(id as keyof typeof t), href: `#${id === 'clases' ? 'clases' : id === 'nosotros' ? 'nosotros' : id === 'alumnos' ? 'alumnos' : id === 'horarios' ? 'horarios' : id === 'eventos' ? 'eventos' : 'donde'}` }))
+
+  // ── Scroll: glass effect + progress bar ──────────────────────────────────
   useEffect(() => {
     const onScroll = () => {
       if (ticking.current) return
@@ -39,36 +42,31 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // ── Active section: IntersectionObserver con rootMargin ───────────────────
-  // rootMargin '-30% 0px -60% 0px' crea una franja de detección en el tercio
-  // superior del viewport. Al hacer scroll, solo la sección que cruza esa
-  // franja se activa — evita que dos secciones compitan a la vez.
+  // ── Active section: IntersectionObserver ─────────────────────────────────
   useEffect(() => {
-    const ids = LINKS.map((l) => l.href.slice(1))
+    const ids = ['clases', 'nosotros', 'alumnos', 'horarios', 'eventos', 'donde']
     const observers: IntersectionObserver[] = []
-
     ids.forEach((id) => {
       const el = document.getElementById(id)
       if (!el) return
-
       const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActive(id)
-        },
-        {
-          rootMargin: '-30% 0px -60% 0px',
-          threshold: 0,
-        }
+        ([entry]) => { if (entry.isIntersecting) setActive(id) },
+        { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
       )
       obs.observe(el)
       observers.push(obs)
     })
-
     return () => observers.forEach((o) => o.disconnect())
   }, [])
 
-  // ── Cerrar drawer al hacer clic en un link ────────────────────────────────
   const handleLinkClick = () => setOpen(false)
+
+  // ── Language switcher ─────────────────────────────────────────────────────
+  const switchLocale = (next: Locale) => {
+    router.replace(pathname, { locale: next })
+  }
+
+  const locales: Locale[] = ['es', 'en', 'ca']
 
   return (
     <nav
@@ -77,42 +75,22 @@ export default function Navbar() {
       }`}
       aria-label="Navegación principal"
     >
-      {/* ── Franja de color degradado ────────────────────────────────────── */}
-      <div
-        aria-hidden="true"
-        style={{ height: 4, background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)' }}
-      />
+      {/* Brand stripe */}
+      <div aria-hidden="true" style={{ height: 4, background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)' }} />
 
-      {/* ── Barra de progreso de lectura ──────────────────────────────────── */}
+      {/* Progress bar */}
       <div
         aria-hidden="true"
         className="h-px transition-[width] duration-100 ease-linear"
-        style={{
-          width:      `${progress}%`,
-          background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)',
-          opacity:    scrolled ? 0.7 : 0,
-        }}
+        style={{ width: `${progress}%`, background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)', opacity: scrolled ? 0.7 : 0 }}
       />
 
-      {/* ── Contenedor principal ──────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
         {/* Logo */}
-        <a href="#" aria-label="EPA Dancers — volver al inicio" className="flex items-center flex-shrink-0">
-          <div
-            className="rounded-lg px-3 py-1.5 flex flex-col"
-            style={{ background: '#111', border: '1.5px solid rgba(255,255,255,0.1)' }}
-          >
-            <span
-              className="font-black italic text-xl leading-none"
-              style={{
-                fontFamily: 'Georgia, serif',
-                background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
+        <a href="#" aria-label={t('backToTop')} className="flex items-center flex-shrink-0">
+          <div className="rounded-lg px-3 py-1.5 flex flex-col" style={{ background: '#111', border: '1.5px solid rgba(255,255,255,0.1)' }}>
+            <span className="font-black italic text-xl leading-none" style={{ fontFamily: 'Georgia, serif', background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               EPA
             </span>
             <span className="text-[7px] tracking-[4px] uppercase font-sans mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>
@@ -121,161 +99,123 @@ export default function Navbar() {
           </div>
         </a>
 
-        {/* ── Links desktop (ocultos en mobile) ─────────────────────────── */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-6">
-          {LINKS.map((l) => {
-            const isActive = active === l.href.slice(1)
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-4 lg:gap-5">
+          {NAV_IDS.map((id) => {
+            const href     = `#${id}`
+            const isActive = active === id
             return (
-              <a
-                key={l.href}
-                href={l.href}
+              <a key={id} href={href}
                 className="text-[11px] tracking-[2px] uppercase font-sans font-medium transition-all duration-200 py-1"
-                style={{
-                  color:        isActive ? '#F0B429' : 'rgba(255,255,255,0.5)',
-                  borderBottom: isActive ? '1.5px solid #F0B429' : '1.5px solid transparent',
-                }}
+                style={{ color: isActive ? '#F0B429' : 'rgba(255,255,255,0.5)', borderBottom: isActive ? '1.5px solid #F0B429' : '1.5px solid transparent' }}
                 aria-current={isActive ? 'page' : undefined}
               >
-                {l.label}
+                {t(id)}
               </a>
             )
           })}
 
-          {/* Separador visual */}
-          <div
-            aria-hidden="true"
-            className="w-px h-5 self-center"
-            style={{ background: 'rgba(255,255,255,0.12)' }}
-          />
+          <div aria-hidden="true" className="w-px h-5 self-center" style={{ background: 'rgba(255,255,255,0.12)' }} />
+
+          {/* Language switcher */}
+          <div className="flex items-center gap-1" aria-label={tLang('aria')}>
+            {locales.map((loc) => (
+              <button
+                key={loc}
+                onClick={() => switchLocale(loc)}
+                className="text-[10px] font-bold font-sans px-2 py-1 rounded transition-all duration-200"
+                style={{
+                  color:      locale === loc ? '#F0B429' : 'rgba(255,255,255,0.35)',
+                  background: locale === loc ? 'rgba(240,180,41,0.1)' : 'transparent',
+                }}
+                aria-pressed={locale === loc}
+              >
+                {tLang(loc)}
+              </button>
+            ))}
+          </div>
+
+          <div aria-hidden="true" className="w-px h-5 self-center" style={{ background: 'rgba(255,255,255,0.12)' }} />
 
           {/* WhatsApp */}
-          <a
-            href={WA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Contáctanos por WhatsApp"
+          <a href={WA_URL} target="_blank" rel="noopener noreferrer" aria-label={t('contactWhatsApp')}
             className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-200 hover:scale-110"
-            style={{ background: '#25D366' }}
-          >
+            style={{ background: '#25D366' }}>
             <WhatsAppIcon />
           </a>
 
           {/* Instagram */}
-          <a
-            href={IG_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Síguenos en Instagram"
+          <a href={IG_URL} target="_blank" rel="noopener noreferrer" aria-label={t('followInstagram')}
             className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-200 hover:scale-110"
-            style={{ background: 'linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)' }}
-          >
+            style={{ background: 'linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)' }}>
             <InstagramIcon />
           </a>
         </div>
 
-        {/* ── Botón hamburger (solo mobile) ─────────────────────────────── */}
+        {/* Hamburger */}
         <button
           className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg transition-colors"
           style={{ color: open ? '#F0B429' : 'rgba(255,255,255,0.7)' }}
           onClick={() => setOpen((v) => !v)}
-          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+          aria-label={open ? t('closeMenu') : t('openMenu')}
           aria-expanded={open}
           aria-controls="mobile-drawer"
         >
-          <svg
-            width="22" height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            aria-hidden="true"
-          >
-            {open ? (
-              <>
-                <line x1="18" y1="6"  x2="6"  y2="18" />
-                <line x1="6"  y1="6"  x2="18" y2="18" />
-              </>
-            ) : (
-              <>
-                <line x1="3" y1="6"  x2="21" y2="6"  />
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </>
-            )}
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+            {open ? (<><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>) : (<><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></>)}
           </svg>
         </button>
       </div>
 
-      {/* ── Drawer mobile — animado con max-height ────────────────────────── */}
+      {/* Mobile drawer */}
       <div
-        id="mobile-drawer"
-        role="navigation"
-        aria-label="Menú móvil"
+        id="mobile-drawer" role="navigation" aria-label="Menú móvil"
         className="md:hidden overflow-hidden"
-        style={{
-          maxHeight:   open ? '26rem' : '0',
-          transition:  'max-height 0.3s ease-in-out',
-          background:  '#0E0B06',
-          borderTop:   open ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
-        }}
+        style={{ maxHeight: open ? '30rem' : '0', transition: 'max-height 0.3s ease-in-out', background: '#0E0B06', borderTop: open ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent' }}
       >
         <div className="px-6 pt-4 pb-6 flex flex-col gap-1">
-          {LINKS.map((l) => {
-            const isActive = active === l.href.slice(1)
+          {NAV_IDS.map((id) => {
+            const isActive = active === id
             return (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={handleLinkClick}
+              <a key={id} href={`#${id}`} onClick={handleLinkClick}
                 className="flex items-center gap-3 py-3 text-sm tracking-[2px] uppercase font-sans font-medium transition-colors duration-200 rounded-lg px-2"
-                style={{
-                  color:      isActive ? '#F0B429' : 'rgba(255,255,255,0.6)',
-                  background: isActive ? 'rgba(240,180,41,0.06)' : 'transparent',
-                }}
+                style={{ color: isActive ? '#F0B429' : 'rgba(255,255,255,0.6)', background: isActive ? 'rgba(240,180,41,0.06)' : 'transparent' }}
                 aria-current={isActive ? 'page' : undefined}
               >
-                {/* Dot indicador */}
-                <span
-                  className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-200"
-                  style={{
-                    background: isActive ? '#F0B429' : 'rgba(255,255,255,0.2)',
-                    transform:  isActive ? 'scale(1.4)' : 'scale(1)',
-                  }}
-                  aria-hidden="true"
-                />
-                {l.label}
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-200" aria-hidden="true"
+                  style={{ background: isActive ? '#F0B429' : 'rgba(255,255,255,0.2)', transform: isActive ? 'scale(1.4)' : 'scale(1)' }} />
+                {t(id)}
               </a>
             )
           })}
 
-          {/* Iconos sociales en el drawer */}
-          <div
-            className="flex items-center gap-3 mt-3 pt-4"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}
-          >
-            <a
-              href={WA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Contáctanos por WhatsApp"
+          {/* Language switcher mobile */}
+          <div className="flex items-center gap-2 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+            {locales.map((loc) => (
+              <button key={loc} onClick={() => { switchLocale(loc); setOpen(false) }}
+                className="text-[11px] font-bold font-sans px-3 py-1.5 rounded-full transition-all duration-200"
+                style={{ background: locale === loc ? 'rgba(240,180,41,0.15)' : 'rgba(255,255,255,0.07)', color: locale === loc ? '#F0B429' : 'rgba(255,255,255,0.4)', border: locale === loc ? '1px solid rgba(240,180,41,0.3)' : '1px solid transparent' }}
+                aria-pressed={locale === loc}
+              >
+                {tLang(loc)}
+              </button>
+            ))}
+          </div>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-3 mt-2 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+            <a href={WA_URL} target="_blank" rel="noopener noreferrer" aria-label={t('contactWhatsApp')}
               className="w-11 h-11 rounded-full flex items-center justify-center transition-transform hover:scale-105"
-              style={{ background: '#25D366' }}
-            >
+              style={{ background: '#25D366' }}>
               <WhatsAppIcon />
             </a>
-            <a
-              href={IG_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Síguenos en Instagram"
+            <a href={IG_URL} target="_blank" rel="noopener noreferrer" aria-label={t('followInstagram')}
               className="w-11 h-11 rounded-xl flex items-center justify-center transition-transform hover:scale-105"
-              style={{ background: 'linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)' }}
-            >
+              style={{ background: 'linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)' }}>
               <InstagramIcon />
             </a>
             <span className="font-sans text-xs ml-1" style={{ color: 'rgba(255,255,255,0.25)' }}>
-              @aliciaypedro.dancers
+              {t('instagramHandle')}
             </span>
           </div>
         </div>
@@ -284,7 +224,6 @@ export default function Navbar() {
   )
 }
 
-// ─── Iconos ──────────────────────────────────────────────────────────────────
 function WhatsAppIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">

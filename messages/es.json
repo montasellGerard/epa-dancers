@@ -1,0 +1,222 @@
+{
+  "meta": {
+    "title": "EPA Dancers — Clases de Salsa, Bachata y Timba en Mollet del Vallès | Alicia y Pedro",
+    "description": "Escuela de baile latino en Mollet del Vallès. Clases de Salsa, Bachata, Timba, Guaguancó y Afro para todos los niveles con Alicia y Pedro. Clases grupales e individuales. ¡Empieza cuando quieras!"
+  },
+  "skipLink": "Saltar al contenido principal",
+  "nav": {
+    "clases": "Clases",
+    "nosotros": "Nosotros",
+    "alumnos": "Alumnos",
+    "horarios": "Horarios",
+    "eventos": "Eventos",
+    "donde": "Dónde",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "contactWhatsApp": "Contáctanos por WhatsApp",
+    "followInstagram": "Síguenos en Instagram",
+    "instagramHandle": "@aliciaypedro.dancers",
+    "backToTop": "EPA Dancers — volver al inicio"
+  },
+  "langSwitcher": {
+    "aria": "Cambiar idioma",
+    "es": "ES",
+    "en": "EN",
+    "ca": "CA"
+  },
+  "hero": {
+    "eyebrow": "Escuela de Baile Latino",
+    "ctaPrimary": "¡Quiero empezar!",
+    "ctaSecondary": "Ver horarios",
+    "photoAlt": "Foto de Alicia & Pedro",
+    "statYears": "Años",
+    "statLevels": "Niveles",
+    "statClasses": "Clases/sem",
+    "statStudents": "Alumnos"
+  },
+  "about": {
+    "eyebrow": "Quiénes somos",
+    "p1": "Alicia y Pedro llevan más de 8 años enseñando Salsa y Bachata con un estilo propio:",
+    "p1Bold": "cercano, divertido y con mucha pasión.",
+    "p2": "Como parte de EPA Dancers, participan regularmente en congresos nacionales e internacionales y forman una comunidad de bailarines de todos los niveles.",
+    "p3": "Tanto si nunca has bailado como si ya tienes experiencia, aquí encontrarás tu sitio.",
+    "aliciaRole": "Especialista en Lady Style y Guaguancó",
+    "pedroRole": "Instructor de Salsa y Rumbero",
+    "statCongresses": "Congresos",
+    "statYears": "Años bailando",
+    "statStudents": "Alumnos",
+    "videoSubtitle": "Alicia y Pedro bailando",
+    "videoClick": "Haz clic para ver el vídeo",
+    "playVideo": "Reproducir vídeo de Alicia y Pedro",
+    "closeVideo": "Cerrar vídeo",
+    "doubts": "¿Tienes dudas?",
+    "writeUs": "Escríbenos"
+  },
+  "testimonials": {
+    "eyebrow": "Nuestros alumnos",
+    "titleMain": "Lo que dicen de",
+    "titleHighlight": "nosotros",
+    "subtitle": "Más de 200 alumnos ya bailan con Alicia y Pedro",
+    "sinceLabel": "En EPA Dancers desde hace",
+    "levelBeginner": "Iniciación",
+    "levelIntermediate": "Intermedio",
+    "levelAdvanced": "Avanzado"
+  },
+  "schedule": {
+    "eyebrow": "Horarios 2025–26",
+    "titleMain": "Clases",
+    "titleAmp": "&",
+    "titleSub": "Precios",
+    "salsa": "Salsa",
+    "bachata": "Bachata",
+    "levelInicio": "inicio",
+    "levelIntermedio": "intermedio",
+    "levelAvanzado": "avanzado",
+    "days": {
+      "mon": "Lun",
+      "tue": "Mar",
+      "wed": "Mié",
+      "thu": "Jue",
+      "fri": "Vie",
+      "sat": "Sáb",
+      "sun": "Dom"
+    },
+    "pricingDoubts": "¿Tienes dudas sobre qué tarifa elegir?",
+    "pricingCta": "Escríbenos por WhatsApp",
+    "price1Label": "1 curso / mes",
+    "price1Desc": "1 clase semanal, cualquier estilo",
+    "price2Label": "2 cursos / mes",
+    "price2Desc": "2 clases semanales a elegir",
+    "price3Label": "3 cursos / mes",
+    "price3Desc": "El favorito de nuestros alumnos",
+    "price3Badge": "Más popular",
+    "price4Label": "Tarifa plana",
+    "price4Desc": "Acceso ilimitado a todas las clases"
+  },
+  "faq": {
+    "eyebrow": "Preguntas frecuentes",
+    "titleMain": "Resolvemos tus",
+    "titleHighlight": "dudas",
+    "subtitle": "Si no encuentras tu respuesta, escríbenos por WhatsApp. Sin compromiso.",
+    "ctaQuestion": "¿Tienes alguna duda que no está aquí?",
+    "ctaButton": "Pregúntanos por WhatsApp",
+    "items": {
+      "pareja": {
+        "question": "¿Necesito venir con pareja?",
+        "answer": "No, la gran mayoría de nuestros alumnos vienen solos. En clase rotamos de pareja continuamente, así que conocerás a mucha gente y aprenderás a adaptarte a distintos estilos de baile. Venir en pareja es bienvenido, pero nunca es obligatorio."
+      },
+      "edad": {
+        "question": "¿Desde qué edad se puede apuntar?",
+        "answer": "Las clases grupales son a partir de 16 años. Si tienes dudas sobre si es adecuado para ti o alguien de tu familia, escríbenos por WhatsApp y te orientamos sin ningún compromiso."
+      },
+      "cuando-empezar": {
+        "question": "¿Puedo empezar en cualquier momento del año?",
+        "answer": "Sí. Tenemos incorporación continua en los grupos de iniciación. No es necesario esperar al inicio de temporada: puedes apuntarte cualquier semana y seguir el ritmo desde el primer día."
+      },
+      "ropa": {
+        "question": "¿Qué ropa y calzado necesito?",
+        "answer": "Ropa cómoda con la que puedas moverte con libertad. Para el calzado, lo ideal es una suela lisa que deslice (zapatos de baile o zapatillas de suela fina). Evita las suelas de goma gruesa al principio, dificultan los giros."
+      },
+      "progresion": {
+        "question": "¿Cuánto tardaré en aprender algo?",
+        "answer": "En las primeras 2-3 clases ya bailarás los pasos básicos y empezarás a sentir el ritmo. La progresión depende de cada persona, pero te prometemos que desde el primer día sales con algo para practicar en casa."
+      },
+      "individuales": {
+        "question": "¿Hay clases individuales o solo grupales?",
+        "answer": "Ofrecemos ambas opciones. Las clases grupales son perfectas para empezar y conocer gente. Las individuales o en pareja permiten acelerar la progresión o preparar una coreografía especial. Consúltanos por WhatsApp."
+      },
+      "pago": {
+        "question": "¿Cómo funciona el pago? ¿Hay matrícula?",
+        "answer": "El pago es mensual y sin matrícula ni permanencia. Cuatro tarifas según tus clases semanales: 1 clase (30€), 2 clases (50€), 3 clases (65€) o tarifa plana ilimitada (75€). Puedes cambiar de tarifa cada mes."
+      }
+    }
+  },
+  "gallery": {
+    "eyebrow": "Galería",
+    "titleMain": "El baile en",
+    "titleHighlight": "acción",
+    "filterAll": "Todos",
+    "filterClase": "Clases",
+    "filterCongreso": "Congresos",
+    "filterActuacion": "Actuaciones",
+    "filterTaller": "Talleres",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "comingSoon": "Próximamente",
+    "comingSoonFull": "Próximamente · Clases, congresos y actuaciones de Alicia y Pedro",
+    "ariaGallery": "Galería de vídeos",
+    "ariaNav": "Navegación de galería",
+    "ariaFilter": "Filtrar por categoría",
+    "categoryClase": "Clase",
+    "categoryCongreso": "Congreso",
+    "categoryActuacion": "Actuación",
+    "categoryTaller": "Taller"
+  },
+  "events": {
+    "eyebrow": "Agenda",
+    "titleMain": "Próximos",
+    "titleHighlight": "Eventos",
+    "filterAll": "Todos",
+    "filterTaller": "Talleres",
+    "filterCongreso": "Congresos",
+    "ariaFilter": "Filtrar eventos",
+    "typeCongreso": "Congreso",
+    "typeTaller": "Taller",
+    "finished": "Finalizado",
+    "emptyText": "No hay eventos de este tipo próximamente.",
+    "emptyFollow": "Síguenos en Instagram",
+    "emptyEnd": "para no perderte nada.",
+    "moreInfo": "Más info"
+  },
+  "location": {
+    "eyebrow": "Dónde estamos",
+    "titleMain": "Ven a",
+    "titleHighlight": "bailar con nosotros",
+    "subtitle": "Estudio en el centro de Mollet del Vallès, muy bien comunicado desde Barcelona.",
+    "addressNote": "⚠️ Dirección provisional — confirmación pendiente",
+    "openMaps": "Ver mapa",
+    "ariaMap": "Ubicación de EPA Dancers en Mollet del Vallès",
+    "hoursTitle": "Horario de clases",
+    "howToGetTitle": "Cómo llegar",
+    "trainTitle": "En tren (Rodalies)",
+    "trainDesc": "Línea R2 o R2N hasta Mollet-Sant Fost. 5 min a pie desde la estación.",
+    "busTitle": "En autobús",
+    "busDesc": "Líneas B20, B21 y B22 desde Barcelona. Parada directa en el centro.",
+    "carTitle": "En coche",
+    "carDesc": "Salida Mollet Nord por la B-30. Aparcamiento gratuito en los alrededores.",
+    "ctaButton": "¿Dudas para llegar? Escríbenos",
+    "dayMonday": "Lunes",
+    "dayTuesday": "Martes",
+    "dayWednesday": "Miércoles",
+    "dayThursday": "Jueves",
+    "dayFriday": "Viernes"
+  },
+  "cta": {
+    "eyebrow": "¿Listo para empezar?",
+    "titleMain": "Tu primera clase",
+    "titleHighlight": "te espera",
+    "subtitle": "Únete a más de 200 alumnos que ya disfrutan de la Salsa, Bachata, Timba y mucho más en Mollet del Vallès.",
+    "button": "Reservar por WhatsApp",
+    "note": "Sin compromiso · Empieza cuando quieras"
+  },
+  "footer": {
+    "tagline": "Alicia & Pedro · Escuela de Baile Latino",
+    "locationLabel": "Mollet del Vallès, Barcelona",
+    "sectionsTitle": "Secciones",
+    "followTitle": "Síguenos",
+    "hours": "Lun–Jue · 19:00h–22:00h",
+    "copyright": "EPA Dancers · Alicia y Pedro",
+    "navClases": "Clases",
+    "navNosotros": "Nosotros",
+    "navAlumnos": "Alumnos",
+    "navHorarios": "Horarios",
+    "navEventos": "Eventos",
+    "navDonde": "Dónde",
+    "ariaWhatsapp": "Contáctanos por WhatsApp",
+    "ariaInstagram": "Síguenos en Instagram"
+  },
+  "whatsapp": {
+    "ariaLabel": "Contáctanos por WhatsApp",
+    "tooltip": "Escríbenos"
+  }
+}
