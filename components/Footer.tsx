@@ -4,7 +4,6 @@ export default function Footer() {
     { label: 'Horarios',  href: '#horarios'  },
     { label: 'Nosotros',  href: '#nosotros'  },
     { label: 'Eventos',   href: '#eventos'   },
-    { label: 'Alumnos',   href: '#alumnos'   },
   ]
 
   return (
@@ -34,7 +33,7 @@ export default function Footer() {
               Alicia &amp; Pedro · Escuela de Baile Latino
             </p>
             <p className="font-sans text-[10px] tracking-wide text-center md:text-left mt-1" style={{ color: 'rgba(255,255,255,0.2)' }}>
-              Barcelona, España
+              Mollet del Vallès, Barcelona
             </p>
           </div>
 
