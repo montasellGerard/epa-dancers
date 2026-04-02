@@ -26,26 +26,26 @@ export const schedule: { salsa: ClassSlot[]; bachata: ClassSlot[] } = {
 
 export const prices = [
   {
-    amount: '29€',
+    amount: '30€',
     label: '1 curso / mes',
     description: '1 clase semanal, cualquier estilo',
     featured: false,
   },
   {
-    amount: '49€',
+    amount: '50€',
     label: '2 cursos / mes',
     description: '2 clases semanales a elegir',
     featured: false,
   },
   {
-    amount: '64€',
+    amount: '65€',
     label: '3 cursos / mes',
     description: 'El favorito de nuestros alumnos',
     featured: true,
     badge: 'Más popular',
   },
   {
-    amount: '74.5€',
+    amount: '75€',
     label: 'Tarifa plana',
     description: 'Acceso ilimitado a todas las clases',
     featured: false,
