@@ -43,6 +43,12 @@ body {
   50%       { transform: translateX(-50%) translateY(6px); }
 }
 
+@keyframes wa-pulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  70%  { transform: scale(1.5); opacity: 0;   }
+  100% { transform: scale(1.5); opacity: 0;   }
+}
+
 /* ── Scrollbar oculta (carrusel testimonios) ───────────────── */
 .scroll-hidden::-webkit-scrollbar { display: none; }
 .scroll-hidden { -ms-overflow-style: none; scrollbar-width: none; }
