@@ -3,8 +3,6 @@
 import { useState }          from 'react'
 import { useTranslations }   from 'next-intl'
 import { useInView }         from '@/hooks/useInView'
-import Image                 from 'next/image'
-
 const WA_URL    = 'https://wa.me/34600000000'
 const VIDEO_SRC = '/videos/Video_Taller_ACM.mp4'
 
@@ -102,34 +100,38 @@ export default function About() {
             </div>
           </div>
 
-          {/* Video — thumbnail real + play */}
+          {/* Vídeo inline + abre modal al pulsar */}
           <div className="w-full md:w-[400px] flex-shrink-0">
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden"
-              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25)' }}>
-              <Image
-                src="/images/Ali_Pedro_Vacuna.jpg"
-                alt={t('videoSubtitle')}
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 768px) 90vw, 400px"
+            <button
+              onClick={() => setVideoOpen(true)}
+              className="group relative w-full aspect-video rounded-2xl overflow-hidden block"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25)' }}
+              aria-label={t('playVideo')}
+            >
+              {/* Vídeo mostrando primer fotograma */}
+              <video
+                src={VIDEO_SRC}
+                preload="metadata"
+                muted
+                playsInline
+                className="w-full h-full object-cover"
               />
-              {/* Overlay oscuro */}
-              <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.38)' }} />
-              {/* Play button */}
-              <button
-                onClick={() => setVideoOpen(true)}
-                className="absolute inset-0 flex flex-col items-center justify-center gap-3 group"
-                aria-label={t('playVideo')}
-              >
-                <div className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110 group-focus:scale-110"
+              {/* Overlay al hacer hover */}
+              <div className="absolute inset-0 transition-colors duration-200"
+                style={{ background: 'rgba(0,0,0,0.25)' }} />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                style={{ background: 'rgba(0,0,0,0.15)' }} />
+              {/* Play button centrado */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
                   style={{ background: '#F0B429', boxShadow: '0 4px 20px rgba(240,180,41,0.55)' }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="#0E0B06" style={{ marginLeft: 3 }} aria-hidden="true">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
-                <span className="text-white/75 text-xs font-sans">{t('videoClick')}</span>
-              </button>
-            </div>
+                <span className="text-white/80 text-xs font-sans">{t('videoClick')}</span>
+              </div>
+            </button>
             <p className="text-center mt-4 text-sm font-sans" style={{ color: '#7A5230' }}>
               {t('doubts')}{' '}
               <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="font-bold underline transition-opacity hover:opacity-70" style={{ color: '#E0157A' }}>
