@@ -1,57 +1,52 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+
+const WA_URL = 'https://wa.me/34600000000'
+const IG_URL = 'https://www.instagram.com/aliciaypedro.dancers/'
+
 export default function Footer() {
+  const t = useTranslations('footer')
+
   const navLinks = [
-    { label: 'Clases',    href: '#clases'    },
-    { label: 'Nosotros',  href: '#nosotros'  },
-    { label: 'Alumnos',   href: '#alumnos'   },
-    { label: 'Horarios',  href: '#horarios'  },
-    { label: 'Eventos',   href: '#eventos'   },
-    { label: 'Dónde',     href: '#donde'     },
+    { label: t('navClases'),   href: '#clases'   },
+    { label: t('navNosotros'), href: '#nosotros' },
+    { label: t('navAlumnos'),  href: '#alumnos'  },
+    { label: t('navHorarios'), href: '#horarios' },
+    { label: t('navEventos'),  href: '#eventos'  },
+    { label: t('navDonde'),    href: '#donde'    },
   ]
 
   return (
     <footer style={{ background: '#0E0B06' }}>
-      {/* Gradient top border */}
       <div style={{ height: 6, background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)' }} />
 
       <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Desktop: 3 columns — Mobile: centrado */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-10 md:gap-6">
 
           {/* Col 1: Logo + tagline */}
           <div className="flex flex-col items-center md:items-start gap-2">
-            <span
-              className="font-black italic text-3xl"
-              style={{
-                fontFamily: 'Georgia, serif',
-                background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
+            <span className="font-black italic text-3xl"
+              style={{ fontFamily: 'Georgia, serif', background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               EPA Dancers
             </span>
             <p className="font-sans text-xs tracking-wide text-center md:text-left" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              Alicia &amp; Pedro · Escuela de Baile Latino
+              {t('tagline')}
             </p>
             <p className="font-sans text-[10px] tracking-wide text-center md:text-left mt-1" style={{ color: 'rgba(255,255,255,0.2)' }}>
-              Mollet del Vallès, Barcelona
+              {t('locationLabel')}
             </p>
           </div>
 
           {/* Col 2: Nav links */}
           <nav aria-label="Navegación pie de página">
             <p className="font-sans font-bold text-[9px] tracking-[3px] uppercase mb-3 text-center md:text-left" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              Secciones
+              {t('sectionsTitle')}
             </p>
             <ul className="flex flex-col gap-2 items-center md:items-start">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="font-sans text-xs transition-colors duration-200 hover:text-white"
-                    style={{ color: 'rgba(255,255,255,0.45)' }}
-                  >
+                  <a href={l.href} className="font-sans text-xs transition-colors duration-200 hover:text-white" style={{ color: 'rgba(255,255,255,0.45)' }}>
                     {l.label}
                   </a>
                 </li>
@@ -59,35 +54,25 @@ export default function Footer() {
             </ul>
           </nav>
 
-          {/* Col 3: Social + contact */}
+          {/* Col 3: Social + hours */}
           <div className="flex flex-col items-center md:items-end gap-4">
             <p className="font-sans font-bold text-[9px] tracking-[3px] uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              Síguenos
+              {t('followTitle')}
             </p>
             <div className="flex gap-3">
-              <a
-                href="https://wa.me/34600000000"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Contáctanos por WhatsApp"
+              <a href={WA_URL} target="_blank" rel="noopener noreferrer" aria-label={t('ariaWhatsapp')}
                 className="w-12 h-12 rounded-full flex items-center justify-center transition-transform hover:scale-110"
-                style={{ background: '#25D366' }}
-              >
+                style={{ background: '#25D366' }}>
                 <WhatsAppIcon />
               </a>
-              <a
-                href="https://instagram.com/aliciaypedro.dancers"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Síguenos en Instagram"
+              <a href={IG_URL} target="_blank" rel="noopener noreferrer" aria-label={t('ariaInstagram')}
                 className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform hover:scale-110"
-                style={{ background: 'linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)' }}
-              >
+                style={{ background: 'linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)' }}>
                 <InstagramIcon />
               </a>
             </div>
             <p className="font-sans text-[10px] text-center md:text-right" style={{ color: 'rgba(255,255,255,0.2)' }}>
-              Lun–Jue · 19:00h–22:00h
+              {t('hours')}
             </p>
           </div>
         </div>
@@ -95,7 +80,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 pt-6 flex justify-center" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <p className="font-sans text-[10px] tracking-wide" style={{ color: 'rgba(255,255,255,0.15)' }}>
-            © {new Date().getFullYear()} EPA Dancers · Alicia y Pedro
+            © {new Date().getFullYear()} {t('copyright')}
           </p>
         </div>
       </div>

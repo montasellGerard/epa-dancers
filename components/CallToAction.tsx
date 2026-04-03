@@ -1,10 +1,12 @@
 'use client'
 
-import { useInView } from '@/hooks/useInView'
+import { useTranslations } from 'next-intl'
+import { useInView }       from '@/hooks/useInView'
 
 const WA_URL = 'https://wa.me/34600000000'
 
 export default function CallToAction() {
+  const t               = useTranslations('cta')
   const { ref, inView } = useInView<HTMLElement>()
 
   return (
@@ -14,80 +16,47 @@ export default function CallToAction() {
       aria-labelledby="cta-heading"
       style={{ background: 'linear-gradient(135deg, #1C0800 0%, #0E0B06 100%)' }}
     >
-      {/* Ambient glows decorativos */}
-      <div
-        className="pointer-events-none absolute -top-20 left-1/4 w-72 h-72 rounded-full"
-        aria-hidden="true"
-        style={{ background: 'radial-gradient(circle, rgba(224,21,122,0.12) 0%, transparent 70%)' }}
-      />
-      <div
-        className="pointer-events-none absolute -bottom-20 right-1/4 w-72 h-72 rounded-full"
-        aria-hidden="true"
-        style={{ background: 'radial-gradient(circle, rgba(0,201,177,0.1) 0%, transparent 70%)' }}
-      />
+      <div className="pointer-events-none absolute -top-20 left-1/4 w-72 h-72 rounded-full" aria-hidden="true"
+        style={{ background: 'radial-gradient(circle, rgba(224,21,122,0.12) 0%, transparent 70%)' }} />
+      <div className="pointer-events-none absolute -bottom-20 right-1/4 w-72 h-72 rounded-full" aria-hidden="true"
+        style={{ background: 'radial-gradient(circle, rgba(0,201,177,0.1) 0%, transparent 70%)' }} />
 
-      {/* Contenido */}
       <div
         className="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-6 transition-all duration-700"
         style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(20px)' }}
       >
-        {/* Eyebrow */}
-        <span
-          className="font-sans font-bold text-[9px] tracking-[3px] uppercase"
-          style={{ color: 'rgba(255,255,255,0.4)' }}
-        >
-          ¿Listo para empezar?
+        <span className="font-sans font-bold text-[9px] tracking-[3px] uppercase" style={{ color: 'rgba(255,255,255,0.4)' }}>
+          {t('eyebrow')}
         </span>
 
-        {/* Título */}
         <h2
           id="cta-heading"
           className="font-black leading-tight text-white"
-          style={{
-            fontFamily: 'Georgia, serif',
-            fontSize: 'clamp(28px, 4vw, 48px)',
-          }}
+          style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(28px, 4vw, 48px)' }}
         >
-          Tu primera clase{' '}
-          <span
-            style={{
-              background: 'linear-gradient(90deg, #E0157A, #F45E0C)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            te espera
+          {t('titleMain')}{' '}
+          <span style={{ background: 'linear-gradient(90deg, #E0157A, #F45E0C)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            {t('titleHighlight')}
           </span>
         </h2>
 
-        {/* Subtítulo */}
-        <p
-          className="font-sans text-base leading-relaxed max-w-md"
-          style={{ color: 'rgba(255,255,255,0.5)' }}
-        >
-          Únete a más de 200 alumnos que ya disfrutan de la Salsa, Bachata, Timba y mucho más en Mollet del Vallès.
+        <p className="font-sans text-base leading-relaxed max-w-md" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          {t('subtitle')}
         </p>
 
-        {/* CTA */}
         <a
           href={WA_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 font-bold font-sans text-sm text-white px-8 py-4 rounded-full transition-transform hover:scale-105"
-          style={{
-            background: '#E0157A',
-            boxShadow: '0 6px 32px rgba(224,21,122,0.45)',
-            animation: 'pulse-glow 2.5s ease-in-out infinite',
-          }}
+          style={{ background: '#E0157A', boxShadow: '0 6px 32px rgba(224,21,122,0.45)', animation: 'pulse-glow 2.5s ease-in-out infinite' }}
         >
           <WhatsAppIcon />
-          Reservar por WhatsApp
+          {t('button')}
         </a>
 
-        {/* Nota tranquilizadora */}
         <p className="font-sans text-[11px]" style={{ color: 'rgba(255,255,255,0.25)' }}>
-          Sin compromiso · Empieza cuando quieras
+          {t('note')}
         </p>
       </div>
     </section>

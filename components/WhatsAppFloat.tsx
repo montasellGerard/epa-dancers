@@ -1,17 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations }     from 'next-intl'
 
 const WA_URL = 'https://wa.me/34600000000'
 
 export default function WhatsAppFloat() {
+  const t               = useTranslations('whatsapp')
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => {
-      // Aparece tras scrollear 500px (pasado el Hero)
-      setVisible(window.scrollY > 500)
-    }
+    const onScroll = () => setVisible(window.scrollY > 500)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -21,43 +20,31 @@ export default function WhatsAppFloat() {
       href={WA_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Contáctanos por WhatsApp"
+      aria-label={t('ariaLabel')}
       className="group fixed bottom-6 right-6 z-[60] flex items-center gap-3"
       style={{
-        opacity:    visible ? 1 : 0,
-        transform:  visible ? 'scale(1) translateY(0)' : 'scale(0.8) translateY(8px)',
-        transition: 'opacity 0.3s ease, transform 0.3s ease',
+        opacity:       visible ? 1 : 0,
+        transform:     visible ? 'scale(1) translateY(0)' : 'scale(0.8) translateY(8px)',
+        transition:    'opacity 0.3s ease, transform 0.3s ease',
         pointerEvents: visible ? 'auto' : 'none',
       }}
     >
-      {/* Tooltip — visible on hover, desktop only */}
+      {/* Tooltip desktop */}
       <span
-        className="hidden md:block font-sans font-semibold text-xs text-white px-3 py-1.5 rounded-full
-                   opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap"
-        style={{
-          background:  'rgba(14,11,6,0.85)',
-          backdropFilter: 'blur(8px)',
-          border: '1px solid rgba(255,255,255,0.1)',
-        }}
+        className="hidden md:block font-sans font-semibold text-xs text-white px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap"
+        style={{ background: 'rgba(14,11,6,0.85)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.1)' }}
         aria-hidden="true"
       >
-        Escríbenos
+        {t('tooltip')}
       </span>
 
       {/* Pulse ring */}
-      <span
-        className="absolute inset-0 rounded-full"
-        aria-hidden="true"
-        style={{
-          background: 'rgba(37,211,102,0.4)',
-          animation:  'wa-pulse 2s ease-in-out infinite',
-        }}
-      />
+      <span className="absolute inset-0 rounded-full" aria-hidden="true"
+        style={{ background: 'rgba(37,211,102,0.4)', animation: 'wa-pulse 2s ease-in-out infinite' }} />
 
       {/* Button */}
       <span
-        className="relative w-14 h-14 rounded-full flex items-center justify-center shadow-lg
-                   transition-transform duration-200 group-hover:scale-110"
+        className="relative w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-110"
         style={{ background: '#25D366', boxShadow: '0 6px 24px rgba(37,211,102,0.5)' }}
       >
         <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
