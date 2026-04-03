@@ -110,7 +110,7 @@ export default function About() {
             >
               {/* Vídeo mostrando primer fotograma */}
               <video
-                src={VIDEO_SRC}
+                src={`${VIDEO_SRC}#t=0.001`}
                 preload="metadata"
                 muted
                 playsInline
@@ -160,7 +160,7 @@ export default function About() {
             </button>
             <div className="w-full aspect-video rounded-xl overflow-hidden bg-black">
               <video
-                src={VIDEO_SRC}
+                src={`${VIDEO_SRC}#t=0.001`}
                 controls
                 autoPlay
                 className="w-full h-full"
