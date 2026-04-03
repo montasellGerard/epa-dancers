@@ -5,5 +5,5 @@ export default createMiddleware(routing)
 
 export const config = {
   // Match all paths except Next.js internals and static files
-  matcher: ['/((?!_next|_vercel|favicon.ico|og-image.jpg|.*\\.(?:svg|png|webp|jpg|jpeg|gif|ico|css|js)).*)'],
+  matcher: ['/((?!_next|_vercel|favicon.ico|og-image.jpg|.*\\.(?:svg|png|webp|jpg|jpeg|gif|ico|css|js|mp4|webm|mov|ogg)).*)'],
 }
