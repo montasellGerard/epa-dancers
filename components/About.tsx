@@ -3,9 +3,10 @@
 import { useState }          from 'react'
 import { useTranslations }   from 'next-intl'
 import { useInView }         from '@/hooks/useInView'
+import Image                 from 'next/image'
 
-const WA_URL             = 'https://wa.me/34600000000'
-const YOUTUBE_VIDEO_ID   = 'VIDEO_ID'
+const WA_URL    = 'https://wa.me/34600000000'
+const VIDEO_SRC = '/videos/Video_Taller_ACM.mp4'
 
 const tags = [
   { label: 'Salsa',             color: 'magenta'   },
@@ -101,21 +102,33 @@ export default function About() {
             </div>
           </div>
 
-          {/* Video placeholder */}
+          {/* Video — thumbnail real + play */}
           <div className="w-full md:w-[400px] flex-shrink-0">
-            <div className="relative w-full aspect-video rounded-2xl flex flex-col items-center justify-center gap-3 overflow-hidden"
-              style={{ background: '#0E0B06', boxShadow: '0 8px 32px rgba(0,0,0,0.2)' }}>
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(0,201,177,0.1), rgba(224,21,122,0.1))' }} />
-              <button onClick={() => setVideoOpen(true)}
-                className="relative z-10 w-16 h-16 rounded-full flex items-center justify-center transition-transform hover:scale-110 focus:scale-110"
-                style={{ background: '#F0B429', boxShadow: '0 4px 20px rgba(240,180,41,0.5)' }}
-                aria-label={t('playVideo')}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#0E0B06" style={{ marginLeft: 3 }} aria-hidden="true">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.25)' }}>
+              <Image
+                src="/images/Ali_Pedro_Vacuna.jpg"
+                alt={t('videoSubtitle')}
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 90vw, 400px"
+              />
+              {/* Overlay oscuro */}
+              <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.38)' }} />
+              {/* Play button */}
+              <button
+                onClick={() => setVideoOpen(true)}
+                className="absolute inset-0 flex flex-col items-center justify-center gap-3 group"
+                aria-label={t('playVideo')}
+              >
+                <div className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110 group-focus:scale-110"
+                  style={{ background: '#F0B429', boxShadow: '0 4px 20px rgba(240,180,41,0.55)' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="#0E0B06" style={{ marginLeft: 3 }} aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+                <span className="text-white/75 text-xs font-sans">{t('videoClick')}</span>
               </button>
-              <span className="relative z-10 text-white/50 text-xs font-sans">{t('videoSubtitle')}</span>
-              <span className="relative z-10 text-white/25 text-[10px] font-sans">{t('videoClick')}</span>
             </div>
             <p className="text-center mt-4 text-sm font-sans" style={{ color: '#7A5230' }}>
               {t('doubts')}{' '}
@@ -129,18 +142,28 @@ export default function About() {
 
       {/* Video modal */}
       {videoOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center" style={{ background: 'rgba(0,0,0,0.85)' }}
+        <div
+          className="fixed inset-0 z-[80] flex items-center justify-center px-4"
+          style={{ background: 'rgba(0,0,0,0.92)' }}
           onClick={(e) => { if (e.target === e.currentTarget) setVideoOpen(false) }}
-          role="dialog" aria-modal="true" aria-label={t('videoSubtitle')}>
-          <div className="relative w-full max-w-3xl mx-4">
-            <button onClick={() => setVideoOpen(false)}
+          role="dialog" aria-modal="true" aria-label={t('videoSubtitle')}
+        >
+          <div className="relative w-full max-w-3xl">
+            <button
+              onClick={() => setVideoOpen(false)}
               className="absolute -top-10 right-0 font-sans text-white/60 hover:text-white transition-colors text-lg"
-              aria-label={t('closeVideo')}>
+              aria-label={t('closeVideo')}
+            >
               ✕ {t('closeVideo')}
             </button>
-            <div className="w-full aspect-video rounded-xl overflow-hidden">
-              <iframe src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1`}
-                title="Alicia y Pedro — EPA Dancers" allow="autoplay; fullscreen" className="w-full h-full" />
+            <div className="w-full aspect-video rounded-xl overflow-hidden bg-black">
+              <video
+                src={VIDEO_SRC}
+                controls
+                autoPlay
+                className="w-full h-full"
+                playsInline
+              />
             </div>
           </div>
         </div>

@@ -16,6 +16,7 @@ export default function Gallery() {
   const [activeIndex,  setActiveIndex]  = useState(0)
   const [canLeft,  setCanLeft]  = useState(false)
   const [canRight, setCanRight] = useState(true)
+  const [videoSrc, setVideoSrc] = useState<string | null>(null)
 
   const FILTERS: { label: string; value: Filter }[] = [
     { label: t('filterAll'),       value: 'todos'     },
@@ -111,25 +112,50 @@ export default function Gallery() {
           style={{ paddingLeft: 'clamp(1.5rem, 5vw, 4rem)', paddingRight: 'clamp(1.5rem, 5vw, 4rem)' }}
           aria-label={t('ariaGallery')}>
           {filtered.map((item: GalleryItem) => {
-            const cfg = categoryConfig[item.category]
+            const cfg     = categoryConfig[item.category]
+            const hasVideo = !!item.videoSrc
             return (
               <div key={item.id} className="snap-start">
-                <article className="relative flex-shrink-0 rounded-2xl overflow-hidden select-none"
-                  style={{ width: '220px', aspectRatio: '9 / 16', background: cfg.gradient, boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}>
+                <article
+                  className="relative flex-shrink-0 rounded-2xl overflow-hidden select-none"
+                  style={{ width: '220px', aspectRatio: '9 / 16', background: cfg.gradient, boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
+                >
+                  {/* Overlay */}
                   <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ background: 'rgba(0,0,0,0.15)' }} />
+
+                  {/* Category badge */}
                   <span className="absolute top-3 left-3 font-sans font-extrabold text-[9px] tracking-[2px] uppercase px-2.5 py-1 rounded-full"
                     style={{ background: 'rgba(0,0,0,0.45)', color: '#fff', backdropFilter: 'blur(6px)' }}>
                     {categoryLabel[item.category]}
                   </span>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full flex items-center justify-center"
-                      style={{ background: 'rgba(255,255,255,0.15)', border: '1.5px solid rgba(255,255,255,0.3)', backdropFilter: 'blur(8px)' }}>
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+
+                  {/* Play button */}
+                  {hasVideo ? (
+                    <button
+                      className="absolute inset-0 flex items-center justify-center group"
+                      onClick={() => setVideoSrc(item.videoSrc!)}
+                      aria-label={item.title}
+                    >
+                      <div className="w-14 h-14 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
+                        style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.4)', backdropFilter: 'blur(8px)' }}>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                      </div>
+                    </button>
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-14 h-14 rounded-full flex items-center justify-center"
+                        style={{ background: 'rgba(255,255,255,0.15)', border: '1.5px solid rgba(255,255,255,0.3)', backdropFilter: 'blur(8px)' }}>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {/* Title + estado */}
                   <div className="absolute bottom-0 left-0 right-0 px-4 py-4" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)' }}>
                     <p className="font-sans font-semibold text-[11px] leading-snug text-white/90">{item.title}</p>
-                    <p className="font-sans text-[9px] text-white/40 mt-0.5 uppercase tracking-widest">{t('comingSoon')}</p>
+                    <p className="font-sans text-[9px] mt-0.5 uppercase tracking-widest" style={{ color: hasVideo ? cfg.accent : 'rgba(255,255,255,0.35)' }}>
+                      {hasVideo ? '▶ Ver vídeo' : t('comingSoon')}
+                    </p>
                   </div>
                 </article>
               </div>
@@ -152,6 +178,35 @@ export default function Gallery() {
           {t('comingSoonFull')}
         </p>
       </div>
+
+      {/* Video modal */}
+      {videoSrc && (
+        <div
+          className="fixed inset-0 z-[80] flex items-center justify-center px-4"
+          style={{ background: 'rgba(0,0,0,0.92)' }}
+          onClick={(e) => { if (e.target === e.currentTarget) setVideoSrc(null) }}
+          role="dialog" aria-modal="true"
+        >
+          <div className="relative w-full max-w-3xl">
+            <button
+              onClick={() => setVideoSrc(null)}
+              className="absolute -top-10 right-0 font-sans text-white/60 hover:text-white transition-colors text-lg"
+              aria-label="Cerrar vídeo"
+            >
+              ✕ Cerrar
+            </button>
+            <div className="w-full aspect-video rounded-xl overflow-hidden bg-black">
+              <video
+                src={videoSrc}
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
