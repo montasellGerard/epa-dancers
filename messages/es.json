@@ -218,5 +218,12 @@
   "whatsapp": {
     "ariaLabel": "Contáctanos por WhatsApp",
     "tooltip": "Escríbenos"
+  },
+  "snapbar": {
+    "ariaLabel": "Anuncio: primera clase sin compromiso",
+    "message": "Primera clase de prueba sin compromiso",
+    "cta": "Resérvala por WhatsApp",
+    "ctaAria": "Reservar primera clase de prueba por WhatsApp",
+    "close": "Cerrar anuncio"
   }
 }

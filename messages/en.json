@@ -218,5 +218,12 @@
   "whatsapp": {
     "ariaLabel": "Contact us on WhatsApp",
     "tooltip": "Write to us"
+  },
+  "snapbar": {
+    "ariaLabel": "Announcement: first class no commitment",
+    "message": "Try your first class, no commitment",
+    "cta": "Book it on WhatsApp",
+    "ctaAria": "Book your first trial class on WhatsApp",
+    "close": "Close announcement"
   }
 }

@@ -70,9 +70,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'backdrop-blur-md bg-[#0E0B06]/92 shadow-xl' : 'bg-[#0E0B06]'
       }`}
+      style={{ top: 'var(--snapbar-h, 0px)' }}
       aria-label="Navegación principal"
     >
       {/* Brand stripe */}
