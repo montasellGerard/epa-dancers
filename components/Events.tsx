@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { events }          from '@/data/events'
 import type { EventType }  from '@/data/events'
 import { useInView }       from '@/hooks/useInView'
+import { IG_URL }          from '@/lib/constants'
 
 type Filter = 'todos' | EventType
 
@@ -59,7 +60,7 @@ export default function Events() {
             <span className="text-4xl" aria-hidden="true">🗓️</span>
             <p className="font-sans text-sm" style={{ color: '#7A5230' }}>
               {t('emptyText')}{' '}
-              <a href="https://instagram.com/aliciaypedro.dancers" target="_blank" rel="noopener noreferrer" className="font-bold underline hover:opacity-70" style={{ color: '#E0157A' }}>
+              <a href={IG_URL} target="_blank" rel="noopener noreferrer" className="font-bold underline hover:opacity-70" style={{ color: '#E0157A' }}>
                 {t('emptyFollow')}
               </a>{' '}
               {t('emptyEnd')}

@@ -5,8 +5,7 @@ import { useTranslations } from 'next-intl'
 import { faqIds }          from '@/data/faq'
 import type { FaqId }      from '@/data/faq'
 import { useInView }       from '@/hooks/useInView'
-
-const WA_URL = 'https://wa.me/34600000000'
+import { WA_URL }          from '@/lib/constants'
 
 export default function FAQ() {
   const t               = useTranslations('faq')

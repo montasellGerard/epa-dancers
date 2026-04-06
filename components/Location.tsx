@@ -2,11 +2,11 @@
 
 import { useTranslations } from 'next-intl'
 import { useInView }       from '@/hooks/useInView'
+import { WA_URL }          from '@/lib/constants'
 
 const ADDRESS    = 'Carrer de la Pau, 12, 08100 Mollet del Vallès, Barcelona'
 const MAPS_EMBED = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11952.123456789!2d2.2118!3d41.5375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4910000000001%3A0x0!2sMollet%20del%20Vall%C3%A8s!5e0!3m2!1ses!2ses!4v1700000000000'
 const MAPS_LINK  = 'https://maps.google.com/?q=Mollet+del+Valles,Barcelona'
-const WA_URL     = 'https://wa.me/34600000000'
 
 const HOURS = [
   { dayKey: 'dayMonday',    time: '19:00 – 22:00 h' },

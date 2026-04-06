@@ -3,7 +3,7 @@
 import { useState }          from 'react'
 import { useTranslations }   from 'next-intl'
 import { useInView }         from '@/hooks/useInView'
-const WA_URL    = 'https://wa.me/34600000000'
+import { WA_URL }            from '@/lib/constants'
 const VIDEO_SRC = '/videos/Video_Taller_ACM.mp4'
 
 const tags = [

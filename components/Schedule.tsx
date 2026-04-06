@@ -4,8 +4,7 @@ import { useTranslations }         from 'next-intl'
 import { schedule, prices }        from '@/data/schedule'
 import type { LevelColor, DayKey } from '@/data/schedule'
 import { useInView }               from '@/hooks/useInView'
-
-const WA_URL = 'https://wa.me/34600000000'
+import { WA_URL }                  from '@/lib/constants'
 
 const levelDotColor: Record<LevelColor, string> = {
   inicio:     '#00C9B1',

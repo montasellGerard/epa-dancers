@@ -4,9 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslations, useLocale }  from 'next-intl'
 import { useRouter, usePathname }      from '@/navigation'
 import type { Locale }                 from '@/i18n/routing'
-
-const WA_URL = 'https://wa.me/34600000000'
-const IG_URL = 'https://www.instagram.com/aliciaypedro.dancers/'
+import { WA_URL, IG_URL }             from '@/lib/constants'
 
 const NAV_IDS = ['clases', 'nosotros', 'alumnos', 'horarios', 'eventos', 'donde'] as const
 

@@ -1,9 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-
-const WA_URL = 'https://wa.me/34600000000'
-const IG_URL = 'https://www.instagram.com/aliciaypedro.dancers/'
+import { WA_URL, IG_URL }  from '@/lib/constants'
 
 export default function Footer() {
   const t = useTranslations('footer')

@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useTranslations }     from 'next-intl'
-
-const WA_URL = 'https://wa.me/34600000000'
+import { WA_URL }              from '@/lib/constants'
 
 export default function WhatsAppFloat() {
   const t               = useTranslations('whatsapp')

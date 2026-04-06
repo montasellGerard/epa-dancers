@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useTranslations }     from 'next-intl'
-
-const WA_URL         = 'https://wa.me/34600000000'
+import { WA_URL }              from '@/lib/constants'
 const SNAPBAR_H      = 36   // px — keep in sync with Navbar's CSS var
 const SESSION_KEY    = 'snapbar-dismissed'
 

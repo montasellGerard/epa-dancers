@@ -3,8 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations }              from 'next-intl'
 import Image                            from 'next/image'
-
-const WA_URL = 'https://wa.me/34600000000'
+import { WA_URL }                       from '@/lib/constants'
 
 const STATS = [
   { val: 8,  suffix: '+' },
