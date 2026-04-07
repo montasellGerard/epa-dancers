@@ -13,6 +13,38 @@ function isPast(dateISO: string) {
   return new Date(dateISO) < new Date(new Date().toDateString())
 }
 
+function EventJsonLd({ evt }: { evt: typeof events[number] }) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type':    'Event',
+    name:       evt.name,
+    startDate:  evt.dateISO,
+    location: {
+      '@type': 'Place',
+      name:    evt.location,
+      address: { '@type': 'PostalAddress', addressLocality: evt.location, addressCountry: 'ES' },
+    },
+    organizer: {
+      '@type': 'Organization',
+      name:    'EPA Dancers',
+      url:     'https://epa-dancers.vercel.app',
+    },
+    eventStatus:      'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(schema)
+          .replace(/</g, '\\u003c')
+          .replace(/>/g, '\\u003e')
+          .replace(/&/g, '\\u0026'),
+      }}
+    />
+  )
+}
+
 export default function Events() {
   const t               = useTranslations('events')
   const [filter, setFilter] = useState<Filter>('todos')
@@ -25,9 +57,12 @@ export default function Events() {
   ]
 
   const visible = events.filter((e) => filter === 'todos' || e.type === filter)
+  const upcoming = events.filter((e) => !isPast(e.dateISO))
 
   return (
     <section id="eventos" ref={ref} className="py-20 px-6" aria-labelledby="eventos-heading" style={{ background: '#FDF6E3' }}>
+      {/* JSON-LD para cada evento próximo */}
+      {upcoming.map((evt) => <EventJsonLd key={evt.id} evt={evt} />)}
       <div className="max-w-7xl mx-auto transition-all duration-700" style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(20px)' }}>
         <div className="flex items-center gap-2 mb-2">
           <span className="w-2 h-2 rounded-full inline-block" style={{ background: '#F0B429' }} />

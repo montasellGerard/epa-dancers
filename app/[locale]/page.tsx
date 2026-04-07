@@ -1,16 +1,19 @@
-import SnapBar        from '@/components/SnapBar'
-import Navbar         from '@/components/Navbar'
-import Hero           from '@/components/Hero'
-import About          from '@/components/About'
-import Gallery        from '@/components/Gallery'
-import Testimonials   from '@/components/Testimonials'
-import Schedule       from '@/components/Schedule'
-import FAQ            from '@/components/FAQ'
-import Events         from '@/components/Events'
-import Location       from '@/components/Location'
-import CallToAction   from '@/components/CallToAction'
-import Footer         from '@/components/Footer'
-import WhatsAppFloat  from '@/components/WhatsAppFloat'
+import dynamic from 'next/dynamic'
+import SnapBar  from '@/components/SnapBar'
+import Navbar   from '@/components/Navbar'
+import Hero     from '@/components/Hero'
+
+// Lazy-load everything below the fold — smaller initial bundle → better LCP
+const About       = dynamic(() => import('@/components/About'))
+const Gallery     = dynamic(() => import('@/components/Gallery'))
+const Testimonials = dynamic(() => import('@/components/Testimonials'))
+const Schedule    = dynamic(() => import('@/components/Schedule'))
+const FAQ         = dynamic(() => import('@/components/FAQ'))
+const Events      = dynamic(() => import('@/components/Events'))
+const Location    = dynamic(() => import('@/components/Location'))
+const CallToAction = dynamic(() => import('@/components/CallToAction'))
+const Footer      = dynamic(() => import('@/components/Footer'))
+const WhatsAppFloat = dynamic(() => import('@/components/WhatsAppFloat'))
 
 export default function Home() {
   return (

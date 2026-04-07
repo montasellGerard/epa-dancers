@@ -4,7 +4,7 @@ import { useTranslations }         from 'next-intl'
 import { schedule, prices }        from '@/data/schedule'
 import type { LevelColor, DayKey } from '@/data/schedule'
 import { useInView }               from '@/hooks/useInView'
-import { WA_URL }                  from '@/lib/constants'
+import { waUrl }                   from '@/lib/constants'
 
 const levelDotColor: Record<LevelColor, string> = {
   inicio:     '#00C9B1',
@@ -110,7 +110,7 @@ export default function Schedule() {
         {/* CTA */}
         <p className="text-center mt-8 font-sans text-sm" style={{ color: '#7A5230' }}>
           {t('pricingDoubts')}{' '}
-          <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="font-bold underline transition-opacity hover:opacity-70" style={{ color: '#E0157A' }}>
+          <a href={waUrl(t('waMessage'))} target="_blank" rel="noopener noreferrer" className="font-bold underline transition-opacity hover:opacity-70" style={{ color: '#E0157A' }}>
             {t('pricingCta')}
           </a>
         </p>

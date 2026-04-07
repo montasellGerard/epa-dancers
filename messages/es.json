@@ -32,7 +32,8 @@
     "statYears": "Años",
     "statLevels": "Niveles",
     "statClasses": "Clases/sem",
-    "statStudents": "Alumnos"
+    "statStudents": "Alumnos",
+    "waMessage": "¡Hola! Me gustaría empezar clases de baile en EPA Dancers. ¿Podéis informarme?"
   },
   "about": {
     "eyebrow": "Quiénes somos",
@@ -50,7 +51,8 @@
     "playVideo": "Reproducir vídeo de Alicia y Pedro",
     "closeVideo": "Cerrar vídeo",
     "doubts": "¿Tienes dudas?",
-    "writeUs": "Escríbenos"
+    "writeUs": "Escríbenos",
+    "waMessage": "¡Hola! He visto vuestra web y tengo algunas dudas sobre las clases. ¿Podéis ayudarme?"
   },
   "testimonials": {
     "eyebrow": "Nuestros alumnos",
@@ -83,6 +85,7 @@
     },
     "pricingDoubts": "¿Tienes dudas sobre qué tarifa elegir?",
     "pricingCta": "Escríbenos por WhatsApp",
+    "waMessage": "¡Hola! Me interesa apuntarme a clases en EPA Dancers. ¿Qué tarifa me recomendáis?",
     "price1Label": "1 curso / mes",
     "price1Desc": "1 clase semanal, cualquier estilo",
     "price2Label": "2 cursos / mes",

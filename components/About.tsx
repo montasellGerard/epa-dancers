@@ -1,9 +1,9 @@
 'use client'
 
-import { useState }          from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslations }   from 'next-intl'
 import { useInView }         from '@/hooks/useInView'
-import { WA_URL }            from '@/lib/constants'
+import { waUrl }             from '@/lib/constants'
 const VIDEO_SRC = '/videos/Video_Taller_ACM.mp4'
 
 const tags = [
@@ -28,6 +28,19 @@ export default function About() {
   const t                           = useTranslations('about')
   const [videoOpen, setVideoOpen]   = useState(false)
   const { ref, inView }             = useInView<HTMLElement>()
+  const closeRef                    = useRef<HTMLButtonElement>(null)
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') setVideoOpen(false)
+  }, [])
+
+  useEffect(() => {
+    if (videoOpen) {
+      document.addEventListener('keydown', handleKeyDown)
+      setTimeout(() => closeRef.current?.focus(), 0)
+    }
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [videoOpen, handleKeyDown])
 
   const profiles = [
     { name: 'Alicia', role: t('aliciaRole'), colorKey: 'magenta',   bg: 'rgba(224,21,122,0.06)', border: 'rgba(224,21,122,0.18)', text: '#A00C58' },
@@ -134,7 +147,7 @@ export default function About() {
             </button>
             <p className="text-center mt-4 text-sm font-sans" style={{ color: '#7A5230' }}>
               {t('doubts')}{' '}
-              <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="font-bold underline transition-opacity hover:opacity-70" style={{ color: '#E0157A' }}>
+              <a href={waUrl(t('waMessage'))} target="_blank" rel="noopener noreferrer" className="font-bold underline transition-opacity hover:opacity-70" style={{ color: '#E0157A' }}>
                 {t('writeUs')}
               </a>
             </p>
@@ -152,6 +165,7 @@ export default function About() {
         >
           <div className="relative w-full max-w-3xl">
             <button
+              ref={closeRef}
               onClick={() => setVideoOpen(false)}
               className="absolute -top-10 right-0 font-sans text-white/60 hover:text-white transition-colors text-lg"
               aria-label={t('closeVideo')}

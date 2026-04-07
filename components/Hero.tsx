@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations }              from 'next-intl'
 import Image                            from 'next/image'
-import { WA_URL }                       from '@/lib/constants'
+import { waUrl }                        from '@/lib/constants'
 
 const STATS = [
   { val: 8,  suffix: '+' },
@@ -96,7 +96,7 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10" style={{ animation: 'fadeInUp 0.6s ease forwards', animationDelay: '0.7s', opacity: 0 }}>
-            <a href={WA_URL} target="_blank" rel="noopener noreferrer"
+            <a href={waUrl(t('waMessage'))} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-bold font-sans text-sm text-white px-7 py-3.5 rounded-full transition-transform hover:scale-105"
               style={{ background: '#E0157A', animation: 'pulse-glow 2.5s ease-in-out infinite', boxShadow: '0 6px 24px rgba(224,21,122,0.4)' }}>
               {t('ctaPrimary')}

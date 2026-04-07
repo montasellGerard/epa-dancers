@@ -32,7 +32,8 @@
     "statYears": "Years",
     "statLevels": "Levels",
     "statClasses": "Classes/week",
-    "statStudents": "Students"
+    "statStudents": "Students",
+    "waMessage": "Hi! I'd like to start dance classes at EPA Dancers. Can you give me more information?"
   },
   "about": {
     "eyebrow": "Who we are",
@@ -50,7 +51,8 @@
     "playVideo": "Play video of Alicia and Pedro",
     "closeVideo": "Close video",
     "doubts": "Have questions?",
-    "writeUs": "Write to us"
+    "writeUs": "Write to us",
+    "waMessage": "Hi! I've seen your website and I have some questions about the classes. Can you help me?"
   },
   "testimonials": {
     "eyebrow": "Our students",
@@ -83,6 +85,7 @@
     },
     "pricingDoubts": "Not sure which plan to choose?",
     "pricingCta": "Write to us on WhatsApp",
+    "waMessage": "Hi! I'm interested in joining classes at EPA Dancers. Which plan do you recommend?",
     "price1Label": "1 class / month",
     "price1Desc": "1 weekly class, any style",
     "price2Label": "2 classes / month",

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslations }              from 'next-intl'
 import { galleryItems, categoryConfig } from '@/data/gallery'
 import type { GalleryCategory, GalleryItem } from '@/data/gallery'
@@ -53,6 +53,22 @@ export default function Gallery() {
     el.addEventListener('scroll', update, { passive: true })
     return () => el.removeEventListener('scroll', update)
   }, [filtered.length])
+
+  const closeRef = useRef<HTMLButtonElement>(null)
+
+  // Cierra el modal con Escape y devuelve el foco al elemento que lo abrió
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') setVideoSrc(null)
+  }, [])
+
+  useEffect(() => {
+    if (videoSrc) {
+      document.addEventListener('keydown', handleKeyDown)
+      // Mueve el foco al botón de cerrar cuando se abre el modal
+      setTimeout(() => closeRef.current?.focus(), 0)
+    }
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [videoSrc, handleKeyDown])
 
   const scrollBy = (dir: 'left' | 'right') => {
     const el = scrollRef.current
@@ -189,6 +205,7 @@ export default function Gallery() {
         >
           <div className="relative w-full max-w-3xl">
             <button
+              ref={closeRef}
               onClick={() => setVideoSrc(null)}
               className="absolute -top-10 right-0 font-sans text-white/60 hover:text-white transition-colors text-lg"
               aria-label="Cerrar vídeo"
