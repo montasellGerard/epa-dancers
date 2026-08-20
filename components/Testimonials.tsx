@@ -21,7 +21,7 @@ function TestimonialCard({ t: item }: { t: Testimonial }) {
     <article className="rounded-2xl p-6 flex flex-col gap-4 relative overflow-hidden h-full"
       style={{ background: '#FDF6E3', border: '1px solid rgba(0,0,0,0.08)', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
       <span className="absolute top-2 right-4 text-8xl font-black leading-none select-none pointer-events-none"
-        style={{ fontFamily: 'Georgia, serif', color: 'rgba(224,21,122,0.05)' }} aria-hidden="true">"</span>
+        style={{ fontFamily: 'Georgia, serif', color: 'rgba(224,21,122,0.05)' }} aria-hidden="true">&ldquo;</span>
 
       {/* Avatar + info */}
       <div className="flex items-center gap-3 relative z-10">
@@ -45,7 +45,7 @@ function TestimonialCard({ t: item }: { t: Testimonial }) {
       )}
 
       <blockquote className="font-sans text-sm leading-relaxed flex-1 relative z-10" style={{ color: '#4A3520' }}>
-        "{item.quote}"
+        &ldquo;{item.quote}&rdquo;
       </blockquote>
 
       <div className="flex items-center gap-1.5 pt-3" style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}>

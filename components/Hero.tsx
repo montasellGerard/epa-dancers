@@ -4,13 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslations }              from 'next-intl'
 import Image                            from 'next/image'
 import { waUrl }                        from '@/lib/constants'
+import { trackWaClick }                 from '@/lib/analytics'
+import { STATS }                        from '@/lib/site'
 
-const STATS = [
-  { val: 8,  suffix: '+' },
-  { val: 4,  suffix: ''  },
-  { val: 15, suffix: '+' },
-  { val: 80, suffix: '+' },
-] as const
+const HERO_STATS = [STATS.years, STATS.styles, STATS.weeklyClasses, STATS.students] as const
 
 function useCounter(target: number, active: boolean, duration = 1200) {
   const [count, setCount] = useState(0)
@@ -45,7 +42,7 @@ export default function Hero() {
   const statsRef  = useRef<HTMLDivElement>(null)
   const [statsVisible, setStatsVisible] = useState(false)
 
-  const STAT_LABELS = [t('statYears'), t('statLevels'), t('statClasses'), t('statStudents')]
+  const STAT_LABELS = [t('statYears'), t('statStyles'), t('statClasses'), t('statStudents')]
 
   useEffect(() => {
     const el = statsRef.current
@@ -92,11 +89,11 @@ export default function Hero() {
 
           <p className="text-white/60 font-sans text-base leading-relaxed mb-8 max-w-md"
             style={{ animation: 'fadeInUp 0.6s ease forwards', animationDelay: '0.55s', opacity: 0 }}>
-            {t('ctaSecondary')}
+            {t('subtitle')}
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10" style={{ animation: 'fadeInUp 0.6s ease forwards', animationDelay: '0.7s', opacity: 0 }}>
-            <a href={waUrl(t('waMessage'))} target="_blank" rel="noopener noreferrer"
+            <a href={waUrl(t('waMessage'))} target="_blank" rel="noopener noreferrer" onClick={() => trackWaClick('hero')}
               className="inline-flex items-center gap-2 font-bold font-sans text-sm text-white px-7 py-3.5 rounded-full transition-transform hover:scale-105"
               style={{ background: '#E0157A', animation: 'pulse-glow 2.5s ease-in-out infinite', boxShadow: '0 6px 24px rgba(224,21,122,0.4)' }}>
               {t('ctaPrimary')}
@@ -109,7 +106,7 @@ export default function Hero() {
           </div>
 
           <div ref={statsRef} className="flex gap-6 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-            {STATS.map((s, i) => (
+            {HERO_STATS.map((s, i) => (
               <StatItem key={i} val={s.val} suffix={s.suffix} lbl={STAT_LABELS[i]} active={statsVisible} />
             ))}
           </div>
@@ -120,7 +117,7 @@ export default function Hero() {
           <div className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden"
             style={{ border: '2px solid rgba(255,255,255,0.08)', boxShadow: '0 0 60px rgba(0,201,177,0.12), 0 0 100px rgba(224,21,122,0.08)' }}>
             <Image
-              src="/images/Ali_Pedro_Presentaci%C3%B3n.jpg"
+              src="/images/ali-pedro-presentacion.jpg"
               alt={t('photoAlt')}
               fill
               className="object-cover object-top"

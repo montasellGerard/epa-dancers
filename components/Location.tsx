@@ -1,24 +1,23 @@
 'use client'
 
+import { useState }        from 'react'
 import { useTranslations } from 'next-intl'
 import { useInView }       from '@/hooks/useInView'
 import { WA_URL }          from '@/lib/constants'
+import { ADDRESS as SITE_ADDRESS, OPENING_HOURS } from '@/lib/site'
 
-const ADDRESS    = 'Carrer de la Pau, 12, 08100 Mollet del Vallès, Barcelona'
-const MAPS_EMBED = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11952.123456789!2d2.2118!3d41.5375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4910000000001%3A0x0!2sMollet%20del%20Vall%C3%A8s!5e0!3m2!1ses!2ses!4v1700000000000'
-const MAPS_LINK  = 'https://maps.google.com/?q=Mollet+del+Valles,Barcelona'
-
-const HOURS = [
-  { dayKey: 'dayMonday',    time: '19:00 – 22:00 h' },
-  { dayKey: 'dayTuesday',   time: '19:00 – 22:00 h' },
-  { dayKey: 'dayWednesday', time: '19:00 – 22:00 h' },
-  { dayKey: 'dayThursday',  time: '19:00 – 22:00 h' },
-  { dayKey: 'dayFriday',    time: '20:00 – 21:30 h' },
-]
+const ADDRESS = `${SITE_ADDRESS.venue} — ${SITE_ADDRESS.full}`
+// Real address confirmed (Aug 2026). Query-based embed — no need for a manually-generated pb= string.
+// Nice-to-have follow-up: swap for a pinned Google Maps → Share → Embed link once the client confirms the map looks right.
+const MAPS_QUERY = `${SITE_ADDRESS.venue}, ${SITE_ADDRESS.full}`
+const MAPS_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(MAPS_QUERY)}&output=embed`
+const MAPS_LINK  = `https://maps.google.com/?q=${encodeURIComponent(MAPS_QUERY)}`
 
 export default function Location() {
   const t               = useTranslations('location')
   const { ref, inView } = useInView<HTMLElement>()
+  // Privacy: Google Maps (and its cookies) only load after explicit user action.
+  const [mapLoaded, setMapLoaded] = useState(false)
 
   const howToGet = [
     { icon: <TrainIcon />, titleKey: 'trainTitle' as const, descKey: 'trainDesc' as const },
@@ -43,7 +42,21 @@ export default function Location() {
           {/* Map + address */}
           <div className="flex-1 flex flex-col gap-4">
             <div className="w-full rounded-2xl overflow-hidden relative" style={{ aspectRatio: '4 / 3', boxShadow: '0 8px 32px rgba(0,0,0,0.12)', border: '1px solid rgba(0,0,0,0.07)' }}>
-              <iframe src={MAPS_EMBED} title={t('ariaMap')} className="w-full h-full" style={{ border: 0, filter: 'saturate(0.8)' }} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+              {mapLoaded ? (
+                <iframe src={MAPS_EMBED} title={t('ariaMap')} className="w-full h-full" style={{ border: 0, filter: 'saturate(0.8)' }} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+              ) : (
+                <button
+                  onClick={() => setMapLoaded(true)}
+                  className="w-full h-full flex flex-col items-center justify-center gap-3 transition-colors hover:bg-black/5"
+                  style={{ background: '#EFE7D2' }}
+                >
+                  <span className="w-12 h-12 rounded-full flex items-center justify-center" style={{ background: 'rgba(0,201,177,0.15)' }} aria-hidden="true">
+                    <PinIcon />
+                  </span>
+                  <span className="font-sans font-bold text-sm" style={{ color: '#1A0A00' }}>{t('loadMap')}</span>
+                  <span className="font-sans text-[11px] px-8 text-center" style={{ color: '#7A5230' }}>{t('mapConsent')}</span>
+                </button>
+              )}
             </div>
             <div className="flex items-center gap-3 px-5 py-4 rounded-xl" style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.07)', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
               <span className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(0,201,177,0.12)' }} aria-hidden="true">
@@ -72,7 +85,7 @@ export default function Location() {
                 <p className="font-bold text-sm" style={{ color: '#1A0A00' }}>{t('hoursTitle')}</p>
               </div>
               <ul className="flex flex-col gap-2.5">
-                {HOURS.map(({ dayKey, time }) => (
+                {OPENING_HOURS.map(({ dayKey, label: time }) => (
                   <li key={dayKey} className="flex items-center justify-between">
                     <span className="font-sans text-sm" style={{ color: '#7A5230' }}>{t(dayKey as Parameters<typeof t>[0])}</span>
                     <span className="font-bold font-sans text-sm" style={{ color: '#1A0A00' }}>{time}</span>

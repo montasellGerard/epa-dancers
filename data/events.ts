@@ -12,6 +12,7 @@ export interface DanceEvent {
   link: string
 }
 
+// TODO(cliente): replace with real upcoming events. Past events are hidden automatically.
 export const events: DanceEvent[] = [
   {
     id: 'taller-salsa-on2-abr-2026',

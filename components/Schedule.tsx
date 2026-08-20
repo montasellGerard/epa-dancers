@@ -25,9 +25,10 @@ export default function Schedule() {
           <span className="w-2 h-2 rounded-full inline-block" style={{ background: '#00C9B1' }} />
           <span className="font-sans font-bold text-[9px] tracking-[3px] uppercase" style={{ color: '#00C9B1' }}>{t('eyebrow')}</span>
         </div>
-        <h2 id="horarios-heading" className="font-black mb-8 leading-tight" style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(28px,4vw,40px)', color: '#1A0A00' }}>
+        <h2 id="horarios-heading" className="font-black mb-2 leading-tight" style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(28px,4vw,40px)', color: '#1A0A00' }}>
           {t('titleMain')} <span className="font-normal" style={{ color: '#7A5230' }}>{t('titleAmp')}</span> {t('titleSub')}
         </h2>
+        <p className="font-sans text-sm mb-8" style={{ color: '#7A5230' }}>{t('seasonNote')}</p>
 
         {/* Schedule cards */}
         <div className="grid md:grid-cols-2 gap-4 mb-10">

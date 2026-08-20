@@ -7,10 +7,11 @@ import { routing }                 from '@/i18n/routing'
 import { Analytics }               from '@vercel/analytics/next'
 import { SpeedInsights }           from '@vercel/speed-insights/next'
 import '../globals.css'
+import { BASE_URL as SITE_BASE_URL, ADDRESS, OPENING_HOURS } from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const BASE_URL = 'https://epa-dancers.vercel.app'
+const BASE_URL = SITE_BASE_URL
 
 // ─── SEO per locale ───────────────────────────────────────────────────────────
 export async function generateMetadata({
@@ -24,14 +25,6 @@ export async function generateMetadata({
   return {
     title:       t('title'),
     description: t('description'),
-    keywords: [
-      'clases de baile Mollet del Vallès', 'baile latino Mollet del Vallès',
-      'salsa Mollet del Vallès', 'bachata Mollet del Vallès',
-      'clases salsa Barcelona', 'clases bachata Barcelona',
-      'timba barcelona', 'guaguancó barcelona',
-      'escuela baile latino Barcelona', 'aprender salsa bachata',
-      'EPA Dancers', 'Alicia Pedro bailarines',
-    ],
     authors:    [{ name: 'EPA Dancers — Alicia y Pedro' }],
     metadataBase: new URL(BASE_URL),
     openGraph: {
@@ -78,38 +71,41 @@ const jsonLd = {
   '@type':    'DanceSchool',
   name:       'EPA Dancers',
   alternateName: 'EPA Dancers — Alicia y Pedro',
-  description: 'Escuela de baile latino en Mollet del Vallès. Salsa, Bachata, Timba, Guaguancó y Afro para todos los niveles.',
+  description: 'Escuela de baile latino en Mollet del Vallès. Salsa, Bachata, Timba, Rumba y Afro para todos los niveles.',
   url:        BASE_URL,
   sameAs:     ['https://www.instagram.com/aliciaypedro.dancers/'],
   priceRange: '€€',
   currenciesAccepted: 'EUR',
-  paymentAccepted:    'Cash, Bank Transfer',
+  paymentAccepted:    'Cash', // Confirmado por el cliente (ago 2026): solo efectivo. TODO(cliente): confirmar si también aceptan Bizum/transferencia.
   address: {
     '@type':           'PostalAddress',
-    addressLocality:   'Mollet del Vallès',
-    addressRegion:     'Vallès Oriental',
+    streetAddress:     ADDRESS.street,
+    addressLocality:   ADDRESS.city,
+    addressRegion:     ADDRESS.region,
     addressCountry:    'ES',
-    postalCode:        '08100',
+    postalCode:        ADDRESS.postalCode,
   },
+  // TODO(cliente/Gerard): geo coords are still the Mollet del Vallès town centre, not the exact venue —
+  // Nominatim/geocoding is blocked from this environment; grab the precise lat/lon from Google Maps (right-click the pin → coordinates).
   geo: {
     '@type':    'GeoCoordinates',
     latitude:   '41.5363',
     longitude:  '2.2117',
   },
-  hasMap: 'https://maps.google.com/?q=Mollet+del+Valles+Barcelona',
-  openingHoursSpecification: [
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Monday',    opens: '19:00', closes: '22:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Tuesday',   opens: '19:00', closes: '22:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Wednesday', opens: '19:00', closes: '22:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Thursday',  opens: '19:00', closes: '22:00' },
-  ],
+  hasMap: `https://maps.google.com/?q=${encodeURIComponent(`${ADDRESS.venue}, ${ADDRESS.full}`)}`,
+  openingHoursSpecification: OPENING_HOURS.map((h) => ({
+    '@type':   'OpeningHoursSpecification',
+    dayOfWeek: h.schemaDay,
+    opens:     h.opens,
+    closes:    h.closes,
+  })),
   founder: [
     { '@type': 'Person', name: 'Alicia', jobTitle: 'Instructora de Salsa, Bachata y Afro',          sameAs: 'https://www.instagram.com/aliciaypedro.dancers/' },
-    { '@type': 'Person', name: 'Pedro',  jobTitle: 'Instructor de Salsa, Timba y Guaguancó', sameAs: 'https://www.instagram.com/aliciaypedro.dancers/' },
+    { '@type': 'Person', name: 'Pedro',  jobTitle: 'Instructor de Salsa, Timba y Rumba', sameAs: 'https://www.instagram.com/aliciaypedro.dancers/' },
   ],
   offers: [
-    { '@type': 'Offer', name: '1 curso / mes',   price: '30', priceCurrency: 'EUR', description: '1 clase semanal, cualquier estilo' },
-    { '@type': 'Offer', name: '2 cursos / mes',  price: '50', priceCurrency: 'EUR', description: '2 clases semanales' },
+    { '@type': 'Offer', name: '1 curso / mes',   price: '29.90', priceCurrency: 'EUR', description: '1 clase semanal, cualquier estilo' },
+    { '@type': 'Offer', name: '2 cursos / mes',  price: '49.90', priceCurrency: 'EUR', description: '2 clases semanales' },
     { '@type': 'Offer', name: '3 cursos / mes',  price: '65', priceCurrency: 'EUR', description: 'El favorito de nuestros alumnos' },
     { '@type': 'Offer', name: 'Tarifa plana',    price: '75', priceCurrency: 'EUR', description: 'Acceso ilimitado a todas las clases' },
   ],

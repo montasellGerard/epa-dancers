@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslations, useLocale }  from 'next-intl'
 import { useRouter, usePathname }      from '@/navigation'
 import type { Locale }                 from '@/i18n/routing'
+import Image                           from 'next/image'
 import { WA_URL, IG_URL }             from '@/lib/constants'
 
 const NAV_IDS = ['clases', 'nosotros', 'alumnos', 'horarios', 'eventos', 'donde'] as const
@@ -20,8 +21,6 @@ export default function Navbar() {
   const [active,    setActive]    = useState<string>('clases')
   const [progress,  setProgress]  = useState(0)
   const ticking = useRef(false)
-
-  const LINKS = NAV_IDS.map((id) => ({ id, label: t(id as keyof typeof t), href: `#${id === 'clases' ? 'clases' : id === 'nosotros' ? 'nosotros' : id === 'alumnos' ? 'alumnos' : id === 'horarios' ? 'horarios' : id === 'eventos' ? 'eventos' : 'donde'}` }))
 
   // ── Scroll: glass effect + progress bar ──────────────────────────────────
   useEffect(() => {
@@ -72,7 +71,7 @@ export default function Navbar() {
         scrolled ? 'backdrop-blur-md bg-[#0E0B06]/92 shadow-xl' : 'bg-[#0E0B06]'
       }`}
       style={{ top: 'var(--snapbar-h, 0px)' }}
-      aria-label="Navegación principal"
+      aria-label={t('ariaMain')}
     >
       {/* Brand stripe */}
       <div aria-hidden="true" style={{ height: 4, background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)' }} />
@@ -88,14 +87,14 @@ export default function Navbar() {
 
         {/* Logo */}
         <a href="#" aria-label={t('backToTop')} className="flex items-center flex-shrink-0">
-          <div className="rounded-lg px-3 py-1.5 flex flex-col" style={{ background: '#111', border: '1.5px solid rgba(255,255,255,0.1)' }}>
-            <span className="font-black italic text-xl leading-none" style={{ fontFamily: 'Georgia, serif', background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              EPA
-            </span>
-            <span className="text-[7px] tracking-[4px] uppercase font-sans mt-0.5" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              Dancers
-            </span>
-          </div>
+          <Image
+            src="/images/logo.png"
+            alt="EPA Dancers"
+            width={660}
+            height={421}
+            priority
+            className="h-11 w-auto"
+          />
         </a>
 
         {/* Desktop links */}
@@ -168,7 +167,7 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div
-        id="mobile-drawer" role="navigation" aria-label="Menú móvil"
+        id="mobile-drawer" role="navigation" aria-label={t('ariaMobile')}
         className="md:hidden overflow-hidden"
         style={{ maxHeight: open ? '30rem' : '0', transition: 'max-height 0.3s ease-in-out', background: '#0E0B06', borderTop: open ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent' }}
       >

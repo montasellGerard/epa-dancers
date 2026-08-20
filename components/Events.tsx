@@ -56,7 +56,8 @@ export default function Events() {
     { value: 'congreso', label: t('filterCongreso') },
   ]
 
-  const visible = events.filter((e) => filter === 'todos' || e.type === filter)
+  // Past events are hidden — an outdated events grid reads as an abandoned site.
+  const visible = events.filter((e) => (filter === 'todos' || e.type === filter) && !isPast(e.dateISO))
   const upcoming = events.filter((e) => !isPast(e.dateISO))
 
   return (

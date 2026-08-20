@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useModalA11y }                 from '@/hooks/useModalA11y'
 import { useTranslations }              from 'next-intl'
 import { galleryItems, categoryConfig } from '@/data/gallery'
 import type { GalleryCategory, GalleryItem } from '@/data/gallery'
@@ -55,20 +56,9 @@ export default function Gallery() {
   }, [filtered.length])
 
   const closeRef = useRef<HTMLButtonElement>(null)
-
-  // Cierra el modal con Escape y devuelve el foco al elemento que lo abrió
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') setVideoSrc(null)
-  }, [])
-
-  useEffect(() => {
-    if (videoSrc) {
-      document.addEventListener('keydown', handleKeyDown)
-      // Mueve el foco al botón de cerrar cuando se abre el modal
-      setTimeout(() => closeRef.current?.focus(), 0)
-    }
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [videoSrc, handleKeyDown])
+  const modalRef = useRef<HTMLDivElement>(null)
+  const closeModal = useCallback(() => setVideoSrc(null), [])
+  useModalA11y(videoSrc !== null, closeModal, modalRef)
 
   const scrollBy = (dir: 'left' | 'right') => {
     const el = scrollRef.current
@@ -170,7 +160,7 @@ export default function Gallery() {
                   <div className="absolute bottom-0 left-0 right-0 px-4 py-4" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)' }}>
                     <p className="font-sans font-semibold text-[11px] leading-snug text-white/90">{item.title}</p>
                     <p className="font-sans text-[9px] mt-0.5 uppercase tracking-widest" style={{ color: hasVideo ? cfg.accent : 'rgba(255,255,255,0.35)' }}>
-                      {hasVideo ? '▶ Ver vídeo' : t('comingSoon')}
+                      {hasVideo ? `▶ ${t('watchVideo')}` : t('comingSoon')}
                     </p>
                   </div>
                 </article>
@@ -200,17 +190,17 @@ export default function Gallery() {
         <div
           className="fixed inset-0 z-[80] flex items-center justify-center px-4"
           style={{ background: 'rgba(0,0,0,0.92)' }}
-          onClick={(e) => { if (e.target === e.currentTarget) setVideoSrc(null) }}
+          onClick={(e) => { if (e.target === e.currentTarget) closeModal() }}
           role="dialog" aria-modal="true"
         >
-          <div className="relative w-full max-w-3xl">
+          <div ref={modalRef} className="relative w-full max-w-3xl">
             <button
               ref={closeRef}
-              onClick={() => setVideoSrc(null)}
+              onClick={closeModal}
               className="absolute -top-10 right-0 font-sans text-white/60 hover:text-white transition-colors text-lg"
-              aria-label="Cerrar vídeo"
+              aria-label={t('closeVideo')}
             >
-              ✕ Cerrar
+              ✕ {t('closeVideo')}
             </button>
             <div className="w-full aspect-video rounded-xl overflow-hidden bg-black">
               <video

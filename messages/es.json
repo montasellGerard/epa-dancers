@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "EPA Dancers — Clases de Salsa, Bachata y Timba en Mollet del Vallès | Alicia y Pedro",
-    "description": "Escuela de baile latino en Mollet del Vallès. Clases de Salsa, Bachata, Timba, Guaguancó y Afro para todos los niveles con Alicia y Pedro. Clases grupales e individuales. ¡Empieza cuando quieras!"
+    "description": "Escuela de baile latino en Mollet del Vallès. Clases de Salsa, Bachata, Timba, Rumba y Afro para todos los niveles con Alicia y Pedro. Clases grupales e individuales. ¡Empieza cuando quieras!"
   },
   "skipLink": "Saltar al contenido principal",
   "nav": {
@@ -16,7 +16,9 @@
     "contactWhatsApp": "Contáctanos por WhatsApp",
     "followInstagram": "Síguenos en Instagram",
     "instagramHandle": "@aliciaypedro.dancers",
-    "backToTop": "EPA Dancers — volver al inicio"
+    "backToTop": "EPA Dancers — volver al inicio",
+    "ariaMain": "Navegación principal",
+    "ariaMobile": "Menú móvil"
   },
   "langSwitcher": {
     "aria": "Cambiar idioma",
@@ -30,18 +32,19 @@
     "ctaSecondary": "Ver horarios",
     "photoAlt": "Foto de Alicia & Pedro",
     "statYears": "Años",
-    "statLevels": "Niveles",
-    "statClasses": "Clases/sem",
+    "statClasses": "Horas/sem",
     "statStudents": "Alumnos",
-    "waMessage": "¡Hola! Me gustaría empezar clases de baile en EPA Dancers. ¿Podéis informarme?"
+    "waMessage": "¡Hola! Me gustaría empezar clases de baile en EPA Dancers. ¿Podéis informarme?",
+    "subtitle": "Clases de Salsa, Bachata, Timba, Rumba y Afro en Mollet del Vallès. Grupos reducidos, todos los niveles y una comunidad que baila de verdad.",
+    "statStyles": "Estilos"
   },
   "about": {
     "eyebrow": "Quiénes somos",
-    "p1": "Alicia y Pedro llevan más de 8 años enseñando Salsa y Bachata con un estilo propio:",
+    "p1": "Alicia y Pedro llevan más de 20 años enseñando Salsa y Bachata con un estilo propio:",
     "p1Bold": "cercano, divertido y con mucha pasión.",
     "p2": "Como parte de EPA Dancers, participan regularmente en congresos nacionales e internacionales y forman una comunidad de bailarines de todos los niveles.",
     "p3": "Tanto si nunca has bailado como si ya tienes experiencia, aquí encontrarás tu sitio.",
-    "aliciaRole": "Especialista en Lady Style y Guaguancó",
+    "aliciaRole": "Especialista en Lady Style y Rumba",
     "pedroRole": "Instructor de Salsa y Rumbero",
     "statCongresses": "Congresos",
     "statYears": "Años bailando",
@@ -52,20 +55,24 @@
     "closeVideo": "Cerrar vídeo",
     "doubts": "¿Tienes dudas?",
     "writeUs": "Escríbenos",
-    "waMessage": "¡Hola! He visto vuestra web y tengo algunas dudas sobre las clases. ¿Podéis ayudarme?"
+    "waMessage": "¡Hola! He visto vuestra web y tengo algunas dudas sobre las clases. ¿Podéis ayudarme?",
+    "tagCongresses": "Congresos",
+    "tagIndividual": "Individuales",
+    "tagAllLevels": "Todos los niveles"
   },
   "testimonials": {
     "eyebrow": "Nuestros alumnos",
     "titleMain": "Lo que dicen de",
     "titleHighlight": "nosotros",
-    "subtitle": "Más de 200 alumnos ya bailan con Alicia y Pedro",
+    "subtitle": "Más de 120 alumnos ya bailan con Alicia y Pedro",
     "sinceLabel": "En EPA Dancers desde hace",
     "levelBeginner": "Iniciación",
     "levelIntermediate": "Intermedio",
     "levelAdvanced": "Avanzado"
   },
   "schedule": {
-    "eyebrow": "Horarios 2025–26",
+    "eyebrow": "Horarios 2026–27",
+    "seasonNote": "Curso 2026-27 · Empieza el lunes 7 de septiembre · Cerrado en agosto",
     "titleMain": "Clases",
     "titleAmp": "&",
     "titleSub": "Precios",
@@ -130,7 +137,7 @@
       },
       "pago": {
         "question": "¿Cómo funciona el pago? ¿Hay matrícula?",
-        "answer": "El pago es mensual y sin matrícula ni permanencia. Cuatro tarifas según tus clases semanales: 1 clase (30€), 2 clases (50€), 3 clases (65€) o tarifa plana ilimitada (75€). Puedes cambiar de tarifa cada mes."
+        "answer": "El pago es mensual y sin matrícula ni permanencia, en efectivo. Cuatro tarifas según tus clases semanales: 1 clase (29,90€), 2 clases (49,90€), 3 clases (65€) o tarifa plana ilimitada (75€). Clases privadas: precio a consultar. Puedes cambiar de tarifa cada mes."
       }
     }
   },
@@ -153,7 +160,9 @@
     "categoryClase": "Clase",
     "categoryCongreso": "Congreso",
     "categoryActuacion": "Actuación",
-    "categoryTaller": "Taller"
+    "categoryTaller": "Taller",
+    "watchVideo": "Ver vídeo",
+    "closeVideo": "Cerrar vídeo"
   },
   "events": {
     "eyebrow": "Agenda",
@@ -176,15 +185,15 @@
     "titleMain": "Ven a",
     "titleHighlight": "bailar con nosotros",
     "subtitle": "Estudio en el centro de Mollet del Vallès, muy bien comunicado desde Barcelona.",
-    "addressNote": "⚠️ Dirección provisional — confirmación pendiente",
+    "addressNote": "Gimnasio Iron Project",
     "openMaps": "Ver mapa",
     "ariaMap": "Ubicación de EPA Dancers en Mollet del Vallès",
     "hoursTitle": "Horario de clases",
     "howToGetTitle": "Cómo llegar",
     "trainTitle": "En tren (Rodalies)",
-    "trainDesc": "Línea R2 o R2N hasta Mollet-Sant Fost. 5 min a pie desde la estación.",
+    "trainDesc": "Línea R2 o R2N hasta Mollet-Sant Fost. 20 min a pie desde la estación.",
     "busTitle": "En autobús",
-    "busDesc": "Líneas B20, B21 y B22 desde Barcelona. Parada directa en el centro.",
+    "busDesc": "Líneas 320 y e21. 5 min a pie desde la parada.",
     "carTitle": "En coche",
     "carDesc": "Salida Mollet Nord por la B-30. Aparcamiento gratuito en los alrededores.",
     "ctaButton": "¿Dudas para llegar? Escríbenos",
@@ -192,13 +201,15 @@
     "dayTuesday": "Martes",
     "dayWednesday": "Miércoles",
     "dayThursday": "Jueves",
-    "dayFriday": "Viernes"
+    "dayFriday": "Viernes",
+    "loadMap": "Ver mapa interactivo",
+    "mapConsent": "El mapa carga contenido de Google Maps al hacer clic"
   },
   "cta": {
     "eyebrow": "¿Listo para empezar?",
     "titleMain": "Tu primera clase",
     "titleHighlight": "te espera",
-    "subtitle": "Únete a más de 200 alumnos que ya disfrutan de la Salsa, Bachata, Timba y mucho más en Mollet del Vallès.",
+    "subtitle": "Únete a más de 120 alumnos que ya disfrutan de la Salsa, Bachata, Timba y mucho más en Mollet del Vallès.",
     "button": "Reservar por WhatsApp",
     "note": "Sin compromiso · Empieza cuando quieras"
   },
@@ -207,7 +218,7 @@
     "locationLabel": "Mollet del Vallès, Barcelona",
     "sectionsTitle": "Secciones",
     "followTitle": "Síguenos",
-    "hours": "Lun–Jue · 19:00h–22:00h",
+    "hours": "Lun–Jue · 19–22 h · Vie · 20–21:30 h",
     "copyright": "EPA Dancers · Alicia y Pedro",
     "navClases": "Clases",
     "navNosotros": "Nosotros",
@@ -216,17 +227,19 @@
     "navEventos": "Eventos",
     "navDonde": "Dónde",
     "ariaWhatsapp": "Contáctanos por WhatsApp",
-    "ariaInstagram": "Síguenos en Instagram"
+    "ariaInstagram": "Síguenos en Instagram",
+    "legalNotice": "Aviso legal",
+    "privacy": "Política de privacidad"
   },
   "whatsapp": {
     "ariaLabel": "Contáctanos por WhatsApp",
     "tooltip": "Escríbenos"
   },
   "snapbar": {
-    "ariaLabel": "Anuncio: primera clase sin compromiso",
-    "message": "Primera clase de prueba sin compromiso",
-    "cta": "Resérvala por WhatsApp",
-    "ctaAria": "Reservar primera clase de prueba por WhatsApp",
+    "ariaLabel": "Anuncio: ven a probar una clase, sin compromiso",
+    "message": "Ven a probar una clase, sin compromiso",
+    "cta": "Escríbenos por WhatsApp",
+    "ctaAria": "Escribir por WhatsApp para venir a probar una clase",
     "close": "Cerrar anuncio"
   }
 }

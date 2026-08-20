@@ -26,6 +26,6 @@ export const galleryItems: GalleryItem[] = [
   { id: 'g4', title: 'Taller ACM — Alicia y Pedro',         category: 'taller',    videoSrc: '/videos/Video_Taller_ACM.mp4' },
   { id: 'g5', title: 'Bachata sensual — clase avanzado',    category: 'clase',     placeholder: true },
   { id: 'g6', title: 'Congreso Bachata — Madrid 2024',      category: 'congreso',  placeholder: true },
-  { id: 'g7', title: 'Guaguancó — demostración Alicia',     category: 'actuacion', placeholder: true },
+  { id: 'g7', title: 'Rumba — demostración Alicia',         category: 'actuacion', placeholder: true },
   { id: 'g8', title: 'Taller Afro — workshop especial',     category: 'taller',    placeholder: true },
 ]

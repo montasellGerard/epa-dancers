@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl'
 import { useInView }       from '@/hooks/useInView'
 import { WA_URL }          from '@/lib/constants'
+import { trackWaClick }    from '@/lib/analytics'
 
 export default function CallToAction() {
   const t               = useTranslations('cta')
@@ -47,6 +48,7 @@ export default function CallToAction() {
           href={WA_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWaClick('cta_final')}
           className="inline-flex items-center gap-3 font-bold font-sans text-sm text-white px-8 py-4 rounded-full transition-transform hover:scale-105"
           style={{ background: '#E0157A', boxShadow: '0 6px 32px rgba(224,21,122,0.45)', animation: 'pulse-glow 2.5s ease-in-out infinite' }}
         >

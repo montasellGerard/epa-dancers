@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const BASE_URL = 'https://epa-dancers.vercel.app'
+import { BASE_URL } from '@/lib/site'
 const LOCALES  = ['es', 'en', 'ca'] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {

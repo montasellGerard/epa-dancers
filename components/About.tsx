@@ -1,20 +1,23 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { useTranslations }   from 'next-intl'
 import { useInView }         from '@/hooks/useInView'
+import { useModalA11y }      from '@/hooks/useModalA11y'
 import { waUrl }             from '@/lib/constants'
+import { STATS }             from '@/lib/site'
 const VIDEO_SRC = '/videos/Video_Taller_ACM.mp4'
 
+/* Style names are proper nouns; the rest are translated via messages.about.* */
 const tags = [
-  { label: 'Salsa',             color: 'magenta'   },
-  { label: 'Bachata',           color: 'turquoise' },
-  { label: 'Timba',             color: 'magenta'   },
-  { label: 'Guaguancó',         color: 'orange'    },
-  { label: 'Afro',              color: 'gold'      },
-  { label: 'Congresos',         color: 'gold'      },
-  { label: 'Individuales',      color: 'orange'    },
-  { label: 'Todos los niveles', color: 'turquoise' },
+  { label: 'Salsa',        key: null,            color: 'magenta'   },
+  { label: 'Bachata',      key: null,            color: 'turquoise' },
+  { label: 'Timba',        key: null,            color: 'magenta'   },
+  { label: 'Rumba',        key: null,            color: 'orange'    },
+  { label: 'Afro',         key: null,            color: 'gold'      },
+  { label: '',             key: 'tagCongresses', color: 'gold'      },
+  { label: '',             key: 'tagIndividual', color: 'orange'    },
+  { label: '',             key: 'tagAllLevels',  color: 'turquoise' },
 ] as const
 
 const tagStyles: Record<string, React.CSSProperties> = {
@@ -30,17 +33,9 @@ export default function About() {
   const { ref, inView }             = useInView<HTMLElement>()
   const closeRef                    = useRef<HTMLButtonElement>(null)
 
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') setVideoOpen(false)
-  }, [])
-
-  useEffect(() => {
-    if (videoOpen) {
-      document.addEventListener('keydown', handleKeyDown)
-      setTimeout(() => closeRef.current?.focus(), 0)
-    }
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [videoOpen, handleKeyDown])
+  const modalRef = useRef<HTMLDivElement>(null)
+  const close    = useCallback(() => setVideoOpen(false), [])
+  useModalA11y(videoOpen, close, modalRef)
 
   const profiles = [
     { name: 'Alicia', role: t('aliciaRole'), colorKey: 'magenta',   bg: 'rgba(224,21,122,0.06)', border: 'rgba(224,21,122,0.18)', text: '#A00C58' },
@@ -48,9 +43,9 @@ export default function About() {
   ]
 
   const logros = [
-    { val: '20+', lbl: t('statCongresses') },
-    { val: '8+',  lbl: t('statYears')      },
-    { val: '200+',lbl: t('statStudents')   },
+    { val: `${STATS.congresses.val}${STATS.congresses.suffix}`, lbl: t('statCongresses') },
+    { val: `${STATS.years.val}${STATS.years.suffix}`,           lbl: t('statYears')      },
+    { val: `${STATS.students.val}${STATS.students.suffix}`,     lbl: t('statStudents')   },
   ]
 
   return (
@@ -79,9 +74,9 @@ export default function About() {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 pt-2">
-              {tags.map((tag) => (
-                <span key={tag.label} className="text-[11px] font-semibold font-sans px-3 py-1 rounded-full transition-transform duration-150 hover:scale-105 cursor-default" style={tagStyles[tag.color]}>
-                  {tag.label}
+              {tags.map((tag, i) => (
+                <span key={i} className="text-[11px] font-semibold font-sans px-3 py-1 rounded-full transition-transform duration-150 hover:scale-105 cursor-default" style={tagStyles[tag.color]}>
+                  {tag.key ? t(tag.key) : tag.label}
                 </span>
               ))}
             </div>
@@ -160,10 +155,10 @@ export default function About() {
         <div
           className="fixed inset-0 z-[80] flex items-center justify-center px-4"
           style={{ background: 'rgba(0,0,0,0.92)' }}
-          onClick={(e) => { if (e.target === e.currentTarget) setVideoOpen(false) }}
+          onClick={(e) => { if (e.target === e.currentTarget) close() }}
           role="dialog" aria-modal="true" aria-label={t('videoSubtitle')}
         >
-          <div className="relative w-full max-w-3xl">
+          <div ref={modalRef} className="relative w-full max-w-3xl">
             <button
               ref={closeRef}
               onClick={() => setVideoOpen(false)}

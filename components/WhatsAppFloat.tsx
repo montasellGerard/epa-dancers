@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslations }     from 'next-intl'
 import { WA_URL }              from '@/lib/constants'
+import { trackWaClick }        from '@/lib/analytics'
 
 export default function WhatsAppFloat() {
   const t               = useTranslations('whatsapp')
@@ -20,6 +21,7 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t('ariaLabel')}
+      onClick={() => trackWaClick('float')}
       className="group fixed bottom-6 right-6 z-[60] flex items-center gap-3"
       style={{
         opacity:       visible ? 1 : 0,

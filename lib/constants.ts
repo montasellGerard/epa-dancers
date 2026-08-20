@@ -1,4 +1,5 @@
-const WA_NUMBER = '34600000000'
+// Confirmed by client (ago 2026): +34 677 83 67 75.
+const WA_NUMBER = '34677836775'
 
 export const WA_URL = `https://wa.me/${WA_NUMBER}`
 export const IG_URL = 'https://www.instagram.com/aliciaypedro.dancers/'

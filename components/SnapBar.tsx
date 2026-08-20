@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslations }     from 'next-intl'
 import { WA_URL }              from '@/lib/constants'
+import { trackWaClick }        from '@/lib/analytics'
 const SNAPBAR_H      = 36   // px — keep in sync with Navbar's CSS var
 const SESSION_KEY    = 'snapbar-dismissed'
 
@@ -28,7 +29,7 @@ export default function SnapBar() {
 
   return (
     <div
-      role="banner"
+      role="region"
       aria-label={t('ariaLabel')}
       className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-center px-10"
       style={{
@@ -45,6 +46,7 @@ export default function SnapBar() {
           href={WA_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWaClick('snapbar')}
           className="underline underline-offset-2 font-bold hover:no-underline whitespace-nowrap"
           aria-label={t('ctaAria')}
         >

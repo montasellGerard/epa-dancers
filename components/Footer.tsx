@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import Image                from 'next/image'
 import { WA_URL, IG_URL }  from '@/lib/constants'
 
 export default function Footer() {
@@ -24,10 +25,7 @@ export default function Footer() {
 
           {/* Col 1: Logo + tagline */}
           <div className="flex flex-col items-center md:items-start gap-2">
-            <span className="font-black italic text-3xl"
-              style={{ fontFamily: 'Georgia, serif', background: 'linear-gradient(90deg,#00C9B1,#F0B429,#F45E0C,#E0157A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              EPA Dancers
-            </span>
+            <Image src="/images/logo.png" alt="EPA Dancers" width={660} height={421} className="h-14 w-auto" />
             <p className="font-sans text-xs tracking-wide text-center md:text-left" style={{ color: 'rgba(255,255,255,0.35)' }}>
               {t('tagline')}
             </p>
@@ -76,7 +74,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 flex justify-center" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        {/* TODO(cliente): Aviso legal y Privacidad ocultos a propósito — Alicia sin alta como autónoma,
+            titular sin NIF/domicilio fiscal confirmados. Las rutas devuelven 404 (ver page.tsx de cada una).
+            Reactivar estos dos enlaces en cuanto CLIENT-QUESTIONS.md bloque 2 esté cerrado. */}
+        <div className="mt-10 pt-6 flex items-center justify-center" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
           <p className="font-sans text-[10px] tracking-wide" style={{ color: 'rgba(255,255,255,0.15)' }}>
             © {new Date().getFullYear()} {t('copyright')}
           </p>

@@ -26,9 +26,10 @@ export const schedule: { salsa: ClassSlot[]; bachata: ClassSlot[] } = {
 }
 
 // Prices — amounts are fixed, labels/descriptions come from messages.schedule.*
+// Confirmed by client brief (Aug 2026): 29,90 / 49,90 / 65 / 75€. Clases privadas: precio a consultar (ya reflejado en FAQ "individuales").
 export const prices = [
-  { amount: '30€', msgKey: 'price1', featured: false },
-  { amount: '50€', msgKey: 'price2', featured: false },
-  { amount: '65€', msgKey: 'price3', featured: true  },
-  { amount: '75€', msgKey: 'price4', featured: false },
+  { amount: '29,90€', msgKey: 'price1', featured: false },
+  { amount: '49,90€', msgKey: 'price2', featured: false },
+  { amount: '65€',    msgKey: 'price3', featured: true  },
+  { amount: '75€',    msgKey: 'price4', featured: false },
 ]
