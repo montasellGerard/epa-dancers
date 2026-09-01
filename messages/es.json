@@ -35,7 +35,7 @@
     "statClasses": "Horas/sem",
     "statStudents": "Alumnos",
     "waMessage": "¡Hola! Me gustaría empezar clases de baile en EPA Dancers. ¿Podéis informarme?",
-    "subtitle": "Clases de Salsa, Bachata, Timba, Rumba y Afro en Mollet del Vallès. Grupos reducidos, todos los niveles y una comunidad que baila de verdad.",
+    "subtitle": "Clases de Salsa, Bachata, Timba, Rumba y Afro Cubano en Mollet del Vallès. Grupos reducidos, todos los niveles y una comunidad donde compartir la pasión por el baile.",
     "statStyles": "Estilos"
   },
   "about": {
@@ -72,12 +72,13 @@
   },
   "schedule": {
     "eyebrow": "Horarios 2026–27",
-    "seasonNote": "Curso 2026-27 · Empieza el lunes 7 de septiembre · Cerrado en agosto",
+    "seasonNote": "Curso 2026-27 · Empieza el lunes 14 de septiembre · Cerrado en agosto",
     "titleMain": "Clases",
     "titleAmp": "&",
     "titleSub": "Precios",
     "salsa": "Salsa",
     "bachata": "Bachata",
+    "cubanos": "Estilos Cubanos",
     "levelInicio": "inicio",
     "levelIntermedio": "intermedio",
     "levelAvanzado": "avanzado",
@@ -195,7 +196,7 @@
     "busTitle": "En autobús",
     "busDesc": "Líneas 320 y e21. 5 min a pie desde la parada.",
     "carTitle": "En coche",
-    "carDesc": "Salida Mollet Nord por la B-30. Aparcamiento gratuito en los alrededores.",
+    "carDesc": "Desde la C-17, salida Mollet del Vallès / Polinyà / Gallecs, que conecta con la zona de Can Flequer. Aparcamiento gratuito en los alrededores.",
     "ctaButton": "¿Dudas para llegar? Escríbenos",
     "dayMonday": "Lunes",
     "dayTuesday": "Martes",

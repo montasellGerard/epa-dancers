@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState }  from 'react'
 import { useTranslations }               from 'next-intl'
+import Image                             from 'next/image'
 import { testimonials, avatarGradients } from '@/data/testimonials'
 import type { Testimonial }              from '@/data/testimonials'
 import { useInView }                     from '@/hooks/useInView'
@@ -17,6 +18,10 @@ function TestimonialCard({ t: item }: { t: Testimonial }) {
     'Avanzado':   trans('levelAdvanced'),
   }
 
+  const meta = [item.level ? (levelLabel[item.level] ?? item.level) : null, item.style ?? null]
+    .filter(Boolean)
+    .join(' · ')
+
   return (
     <article className="rounded-2xl p-6 flex flex-col gap-4 relative overflow-hidden h-full"
       style={{ background: '#FDF6E3', border: '1px solid rgba(0,0,0,0.08)', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
@@ -25,15 +30,23 @@ function TestimonialCard({ t: item }: { t: Testimonial }) {
 
       {/* Avatar + info */}
       <div className="flex items-center gap-3 relative z-10">
-        <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0"
-          style={{ background: avatarGradients[item.avatarColor] }} aria-hidden="true">
-          {item.initials}
-        </div>
+        {item.photo ? (
+          <div className="w-12 h-12 rounded-full overflow-hidden relative flex-shrink-0" style={{ border: '2px solid rgba(255,255,255,0.8)' }}>
+            <Image src={item.photo} alt="" fill sizes="48px" className="object-cover" />
+          </div>
+        ) : (
+          <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-sm text-white flex-shrink-0"
+            style={{ background: avatarGradients[item.avatarColor] }} aria-hidden="true">
+            {item.initials}
+          </div>
+        )}
         <div>
           <p className="font-bold text-sm leading-none" style={{ color: '#1A0A00' }}>{item.name}</p>
-          <p className="font-sans text-[10px] mt-0.5 uppercase tracking-wider" style={{ color: '#7A5230' }}>
-            {levelLabel[item.level] ?? item.level} · {item.style}
-          </p>
+          {meta && (
+            <p className="font-sans text-[10px] mt-0.5 uppercase tracking-wider" style={{ color: '#7A5230' }}>
+              {meta}
+            </p>
+          )}
         </div>
       </div>
 
@@ -48,10 +61,12 @@ function TestimonialCard({ t: item }: { t: Testimonial }) {
         &ldquo;{item.quote}&rdquo;
       </blockquote>
 
-      <div className="flex items-center gap-1.5 pt-3" style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}>
-        <span className="font-sans text-[9px] uppercase tracking-wider" style={{ color: '#7A5230' }}>{trans('sinceLabel')}</span>
-        <span className="font-sans text-[9px] font-bold" style={{ color: '#F45E0C' }}>{item.since}</span>
-      </div>
+      {item.since && (
+        <div className="flex items-center gap-1.5 pt-3" style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+          <span className="font-sans text-[9px] uppercase tracking-wider" style={{ color: '#7A5230' }}>{trans('sinceLabel')}</span>
+          <span className="font-sans text-[9px] font-bold" style={{ color: '#F45E0C' }}>{item.since}</span>
+        </div>
+      )}
     </article>
   )
 }

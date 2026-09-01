@@ -1,10 +1,10 @@
 'use client'
 
-import { useTranslations }         from 'next-intl'
-import { schedule, prices }        from '@/data/schedule'
-import type { LevelColor, DayKey } from '@/data/schedule'
-import { useInView }               from '@/hooks/useInView'
-import { waUrl }                   from '@/lib/constants'
+import { useTranslations }               from 'next-intl'
+import { schedule, cubanStyles, prices } from '@/data/schedule'
+import type { LevelColor, DayKey }       from '@/data/schedule'
+import { useInView }                     from '@/hooks/useInView'
+import { waUrl }                         from '@/lib/constants'
 
 const levelDotColor: Record<LevelColor, string> = {
   inicio:     '#00C9B1',
@@ -31,7 +31,7 @@ export default function Schedule() {
         <p className="font-sans text-sm mb-8" style={{ color: '#7A5230' }}>{t('seasonNote')}</p>
 
         {/* Schedule cards */}
-        <div className="grid md:grid-cols-2 gap-4 mb-10">
+        <div className="grid md:grid-cols-3 gap-4 mb-10">
           {/* Salsa */}
           <div className="bg-white rounded-xl p-5 shadow-sm" style={{ borderTop: '3px solid #E0157A' }}>
             <div className="flex items-center gap-2 mb-4">
@@ -63,6 +63,21 @@ export default function Schedule() {
                   <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: levelDotColor[row.levelColor] }} aria-label={row.levelColor} />
                   <span className="font-semibold text-sm font-sans" style={{ color: '#1A0A00' }}>{row.level}</span>
                 </div>
+                <span className="text-xs font-sans" style={{ color: '#7A5230' }}>{dayLabel(row.dayKey)} · {row.time}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Estilos cubanos — sin nivel, se muestran por estilo */}
+          <div className="bg-white rounded-xl p-5 shadow-sm" style={{ borderTop: '3px solid #F0B429' }}>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2 h-2 rounded-full" style={{ background: '#F0B429' }} />
+              <span className="font-sans font-extrabold text-[9px] tracking-[2.5px] uppercase" style={{ color: '#F0B429' }}>{t('cubanos')}</span>
+            </div>
+            {cubanStyles.map((row) => (
+              <div key={`cubano-${row.name}`}
+                className="flex justify-between items-center py-2.5 border-b last:border-b-0 border-stone-100 rounded-lg px-2 -mx-2 hover:bg-stone-50 transition-colors">
+                <span className="font-semibold text-sm font-sans" style={{ color: '#1A0A00' }}>{row.name}</span>
                 <span className="text-xs font-sans" style={{ color: '#7A5230' }}>{dayLabel(row.dayKey)} · {row.time}</span>
               </div>
             ))}

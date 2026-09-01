@@ -11,9 +11,9 @@
  *   photo       — ruta en /public/testimonials/ o null (usa avatar con initials)
  *   initials    — 2 letras para el avatar de fallback (ej: "ML")
  *   avatarColor — color del avatar: 'magenta' | 'turquoise' | 'gold' | 'orange'
- *   level       — nivel de danza
- *   style       — estilo que practica
- *   since       — tiempo en la escuela (texto libre, ej: "2 años")
+ *   level       — nivel de danza (opcional — solo si el alumno lo indica)
+ *   style       — estilo que practica (opcional)
+ *   since       — tiempo en la escuela (opcional, texto libre, ej: "2 años")
  *   quote       — testimonio (máx. 200 caracteres recomendados)
  *   highlight   — frase clave destacada en badge (opcional, máx. 60 caracteres)
  *   order       — orden de aparición (ascendente)
@@ -30,9 +30,9 @@ export interface Testimonial {
   photo: string | null
   initials: string
   avatarColor: AvatarColor
-  level: DanceLevel
-  style: DanceStyle
-  since: string
+  level?: DanceLevel
+  style?: DanceStyle
+  since?: string
   quote: string
   highlight?: string
   order: number
@@ -46,46 +46,39 @@ export const avatarGradients: Record<AvatarColor, string> = {
   orange:    'linear-gradient(135deg, #F45E0C, #B83900)',
 }
 
+// Testimonios reales enviados por Alicia por WhatsApp (29-ago-2026). Sustituyen a los placeholders de lanzamiento.
 export const testimonials: Testimonial[] = [
   {
-    id: 'maria-lopez-salsa',
-    name: 'María López',
-    photo: null,
-    initials: 'ML',
-    avatarColor: 'magenta',
-    level: 'Intermedio',
-    style: 'Salsa',
-    since: '2 años',
-    quote: 'Llegué sin saber mover los pies y ahora voy a congresos. Alicia y Pedro tienen una paciencia y una energía que te enganchan desde el primer día.',
-    highlight: 'De cero a congresos en 2 años',
+    id: 'mario',
+    name: 'Mario',
+    photo: '/testimonials/mario.jpg',
+    initials: 'MA',
+    avatarColor: 'turquoise',
+    since: '4 años',
+    quote: 'Personas excepcionales tanto en lo "profesional" como en lo personal. 4 años de cursos y con la paciencia de ellos progresando. Ayudan a no darse por vencido y te apoyan durante las clases.',
+    highlight: '4 años sin rendirse',
     order: 1,
     featured: true,
   },
   {
-    id: 'carlos-ruiz-bachata',
-    name: 'Carlos Ruiz',
-    photo: null,
-    initials: 'CR',
-    avatarColor: 'turquoise',
-    level: 'Avanzado',
-    style: 'Bachata',
-    since: '3 años',
-    quote: 'EPA Dancers es mi segunda familia. La comunidad que han creado Alicia y Pedro es única en Barcelona. No solo aprendes a bailar, aprendes a disfrutarlo.',
-    highlight: 'Una comunidad única en Barcelona',
+    id: 'mel',
+    name: 'Mel',
+    photo: '/testimonials/mel.jpg',
+    initials: 'ME',
+    avatarColor: 'magenta',
+    quote: 'Gran academia, con altísimo nivel de enseñanza, pasión por el baile y conocimientos musicales y técnicos sobre la salsa y bachata. Haberlos conocido ha sido uno de los grandes giros de mi vida.',
+    highlight: 'Uno de los grandes giros de mi vida',
     order: 2,
     featured: true,
   },
   {
-    id: 'laura-martinez-salsa-bachata',
-    name: 'Laura Martínez',
+    id: 'victor',
+    name: 'Víctor',
     photo: null,
-    initials: 'LM',
+    initials: 'VI',
     avatarColor: 'gold',
-    level: 'Iniciación',
-    style: 'Salsa & Bachata',
-    since: '8 meses',
-    quote: 'Empecé con miedo y sin ritmo. Pedro y Alicia hacen que todo parezca fácil y que nunca te sientas mal por equivocarte. Ahora espero las clases cada semana.',
-    highlight: 'Las clases que esperaba cada semana',
+    quote: 'Esta escuela destaca por su autenticidad: no siguen modas ni lo comercial, defienden de verdad su propio estilo. Pero lo mejor es lo familiar y acogedor que es el ambiente, te hacen sentir parte desde el primer día.',
+    highlight: 'Autenticidad y ambiente familiar',
     order: 3,
     featured: true,
   },

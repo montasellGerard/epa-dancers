@@ -10,7 +10,7 @@ export const BASE_URL = 'https://epa-dancers.vercel.app'
 export const STATS = {
   years:         { val: 20,  suffix: '+' },  // Confirmed by Alicia: 20+ years teaching (first at another school, now at EPA Dancers)
   styles:        { val: 5,   suffix: ''  },  // Salsa, Bachata, Timba, Rumba, Afro
-  weeklyClasses: { val: 15,  suffix: ''  },  // Confirmed exact: 15h/week. NOTE: data/schedule.ts grid still shows the old 10-class layout — client will send the real 2026-27 grid later (see GERARD-TODO.md). Update schedule.ts to match before launch.
+  weeklyClasses: { val: 15,  suffix: ''  },  // Confirmed exact: 15h/week (Alicia, ago 2026). NOTE: el horario real 2026-27 (data/schedule.ts, ago 2026) suma 14h — revisar con Alicia si falta alguna clase o el 15 incluye algo más (privadas, etc).
   students:      { val: 120, suffix: '+' },  // Confirmed via client brief (previously showed conflicting 80+/200+)
   congresses:    { val: 20,  suffix: '+' },  // TODO(cliente): confirm
 } as const
@@ -25,10 +25,12 @@ export const ADDRESS = {
 } as const
 
 /** Weekly opening hours — keep Location card, footer and JSON-LD in sync. */
+// Horario real confirmado por Alicia (29-ago-2026) para Lun/Mar/Mié/Vie.
+// Jueves no vino en ese mensaje — se mantiene 19:00-22:00, que ya encaja con las clases de jueves en data/schedule.ts.
 export const OPENING_HOURS = [
-  { dayKey: 'dayMonday',    schemaDay: 'Monday',    opens: '19:00', closes: '22:00', label: '19:00 – 22:00 h' },
-  { dayKey: 'dayTuesday',   schemaDay: 'Tuesday',   opens: '19:00', closes: '22:00', label: '19:00 – 22:00 h' },
-  { dayKey: 'dayWednesday', schemaDay: 'Wednesday', opens: '19:00', closes: '22:30', label: '19:00 – 22:30 h' },
+  { dayKey: 'dayMonday',    schemaDay: 'Monday',    opens: '19:00', closes: '22:30', label: '19:00 – 22:30 h' },
+  { dayKey: 'dayTuesday',   schemaDay: 'Tuesday',   opens: '20:00', closes: '22:00', label: '20:00 – 22:00 h' },
+  { dayKey: 'dayWednesday', schemaDay: 'Wednesday', opens: '19:00', closes: '22:00', label: '19:00 – 22:00 h' },
   { dayKey: 'dayThursday',  schemaDay: 'Thursday',  opens: '19:00', closes: '22:00', label: '19:00 – 22:00 h' },
-  { dayKey: 'dayFriday',    schemaDay: 'Friday',    opens: '20:00', closes: '21:30', label: '20:00 – 21:30 h' },
+  { dayKey: 'dayFriday',    schemaDay: 'Friday',    opens: '18:00', closes: '21:00', label: '18:00 – 21:00 h' },
 ] as const
