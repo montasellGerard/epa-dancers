@@ -19,8 +19,9 @@ export const schedule: { salsa: ClassSlot[]; bachata: ClassSlot[] } = {
   salsa: [
     { level: 'Inicio 1',     dayKey: 'thu', time: '21h–22h', levelColor: 'inicio'     },
     { level: 'Inicio 2',     dayKey: 'wed', time: '20h–21h', levelColor: 'inicio'     },
-    { level: 'Inicio 3',     dayKey: 'tue', time: '20h–21h', levelColor: 'inicio'     },
-    { level: 'Intermedio 2', dayKey: 'thu', time: '19h–20h', levelColor: 'intermedio' },
+    { level: 'Inicio 3',     dayKey: 'tue', time: '21h–22h',      levelColor: 'inicio'     },
+    // Horario cambiado por la escuela (confirmado por Gerard, 2-sep-2026) — antes 19h-20h.
+    { level: 'Intermedio 2', dayKey: 'thu', time: '18:45h–19:45h', levelColor: 'intermedio' },
     { level: 'Intermedio 3', dayKey: 'fri', time: '20h–21h', levelColor: 'intermedio' },
     { level: 'Avanzado',     dayKey: 'wed', time: '21h–22h', levelColor: 'avanzado'   },
   ],
@@ -30,7 +31,7 @@ export const schedule: { salsa: ClassSlot[]; bachata: ClassSlot[] } = {
     // Día confirmado por Gerard (1-sep-2026): lunes, dentro del horario de apertura (19h-22:30h) y sin solape con Intermedio 2.
     { level: 'Inicio 3',     dayKey: 'mon', time: '21:30h–22:30h', levelColor: 'inicio'     },
     { level: 'Intermedio 2', dayKey: 'mon', time: '19:30h–20:30h', levelColor: 'intermedio' },
-    { level: 'Avanzado',     dayKey: 'tue', time: '20:30h–21:30h', levelColor: 'avanzado'   },
+    { level: 'Avanzado',     dayKey: 'mon', time: '20:30h–21:30h', levelColor: 'avanzado'   },
   ],
 }
 

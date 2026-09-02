@@ -31,6 +31,6 @@ export const OPENING_HOURS = [
   { dayKey: 'dayMonday',    schemaDay: 'Monday',    opens: '19:00', closes: '22:30', label: '19:00 – 22:30 h' },
   { dayKey: 'dayTuesday',   schemaDay: 'Tuesday',   opens: '20:00', closes: '22:00', label: '20:00 – 22:00 h' },
   { dayKey: 'dayWednesday', schemaDay: 'Wednesday', opens: '19:00', closes: '22:00', label: '19:00 – 22:00 h' },
-  { dayKey: 'dayThursday',  schemaDay: 'Thursday',  opens: '19:00', closes: '22:00', label: '19:00 – 22:00 h' },
+  { dayKey: 'dayThursday',  schemaDay: 'Thursday',  opens: '18:45', closes: '22:00', label: '18:45 – 22:00 h' },
   { dayKey: 'dayFriday',    schemaDay: 'Friday',    opens: '18:00', closes: '21:00', label: '18:00 – 21:00 h' },
 ] as const
