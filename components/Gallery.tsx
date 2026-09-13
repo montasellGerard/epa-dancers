@@ -17,7 +17,7 @@ export default function Gallery() {
   const [activeIndex,  setActiveIndex]  = useState(0)
   const [canLeft,  setCanLeft]  = useState(false)
   const [canRight, setCanRight] = useState(true)
-  const [videoSrc, setVideoSrc] = useState<string | null>(null)
+  const [active, setActive] = useState<GalleryItem | null>(null)
 
   const FILTERS: { label: string; value: Filter }[] = [
     { label: t('filterAll'),       value: 'todos'     },
@@ -57,8 +57,8 @@ export default function Gallery() {
 
   const closeRef = useRef<HTMLButtonElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
-  const closeModal = useCallback(() => setVideoSrc(null), [])
-  useModalA11y(videoSrc !== null, closeModal, modalRef)
+  const closeModal = useCallback(() => setActive(null), [])
+  useModalA11y(active !== null, closeModal, modalRef)
 
   const scrollBy = (dir: 'left' | 'right') => {
     const el = scrollRef.current
@@ -126,8 +126,22 @@ export default function Gallery() {
                   className="relative flex-shrink-0 rounded-2xl overflow-hidden select-none"
                   style={{ width: '220px', aspectRatio: '9 / 16', background: cfg.gradient, boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}
                 >
+                  {/* Poster frame (real videos only) */}
+                  {item.poster && (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={item.poster}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  )}
+
                   {/* Overlay */}
-                  <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ background: 'rgba(0,0,0,0.15)' }} />
+                  <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
+                    style={{ background: item.poster ? 'rgba(0,0,0,0.28)' : 'rgba(0,0,0,0.15)' }} />
 
                   {/* Category badge */}
                   <span className="absolute top-3 left-3 font-sans font-extrabold text-[9px] tracking-[2px] uppercase px-2.5 py-1 rounded-full"
@@ -139,7 +153,7 @@ export default function Gallery() {
                   {hasVideo ? (
                     <button
                       className="absolute inset-0 flex items-center justify-center group"
-                      onClick={() => setVideoSrc(item.videoSrc!)}
+                      onClick={() => setActive(item)}
                       aria-label={item.title}
                     >
                       <div className="w-14 h-14 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
@@ -185,32 +199,42 @@ export default function Gallery() {
         </p>
       </div>
 
-      {/* Video modal */}
-      {videoSrc && (
+      {/* Video modal — sizes itself to the video's own aspect ratio */}
+      {active?.videoSrc && (
         <div
-          className="fixed inset-0 z-[80] flex items-center justify-center px-4"
+          className="fixed inset-0 z-[80] flex items-center justify-center p-4"
           style={{ background: 'rgba(0,0,0,0.92)' }}
           onClick={(e) => { if (e.target === e.currentTarget) closeModal() }}
-          role="dialog" aria-modal="true"
+          role="dialog" aria-modal="true" aria-label={active.title}
         >
-          <div ref={modalRef} className="relative w-full max-w-3xl">
+          <div ref={modalRef} className="relative flex flex-col items-center gap-3 max-h-full">
             <button
               ref={closeRef}
               onClick={closeModal}
-              className="absolute -top-10 right-0 font-sans text-white/60 hover:text-white transition-colors text-lg"
+              className="self-end font-sans text-white/60 hover:text-white transition-colors text-lg shrink-0"
               aria-label={t('closeVideo')}
             >
               ✕ {t('closeVideo')}
             </button>
-            <div className="w-full aspect-video rounded-xl overflow-hidden bg-black">
-              <video
-                src={videoSrc}
-                controls
-                autoPlay
-                playsInline
-                className="w-full h-full"
-              />
-            </div>
+
+            <video
+              key={active.id}
+              src={active.videoSrc}
+              poster={active.poster}
+              controls
+              autoPlay
+              playsInline
+              preload="metadata"
+              className="rounded-xl bg-black min-h-0"
+              style={{ maxHeight: 'calc(100vh - 10rem)', maxWidth: '100%', width: 'auto', height: 'auto' }}
+            />
+
+            <p className="font-sans text-[12px] text-center text-white/70 shrink-0">
+              {active.title}
+              {active.credit && (
+                <span className="block text-[10px] mt-1 text-white/35">{active.credit}</span>
+              )}
+            </p>
           </div>
         </div>
       )}
