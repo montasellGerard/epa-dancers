@@ -10,7 +10,7 @@ export const BASE_URL = 'https://epa-dancers.vercel.app'
 export const STATS = {
   years:         { val: 20,  suffix: '+' },  // Confirmed by Alicia: 20+ years teaching (first at another school, now at EPA Dancers)
   styles:        { val: 5,   suffix: ''  },  // Salsa, Bachata, Timba, Rumba, Afro
-  weeklyClasses: { val: 15,  suffix: ''  },  // Confirmed exact: 15h/week (Alicia, ago 2026). NOTE: el horario real 2026-27 (data/schedule.ts, ago 2026) suma 14h — revisar con Alicia si falta alguna clase o el 15 incluye algo más (privadas, etc).
+  weeklyClasses: { val: 15,  suffix: ''  },  // Confirmed exact: 15h/week (Alicia, ago 2026). Desde el ajuste de Bachata Inicio del 14-sep-2026 el horario de data/schedule.ts suma exactamente 15h (6 salsa + 6 bachata + 3 cubanos) — ya no hay desfase.
   students:      { val: 120, suffix: '+' },  // Confirmed via client brief (previously showed conflicting 80+/200+)
   congresses:    { val: 20,  suffix: '+' },  // TODO(cliente): confirm
 } as const

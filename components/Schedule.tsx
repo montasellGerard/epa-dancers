@@ -80,7 +80,7 @@ export default function Schedule() {
                   <span className="font-sans font-extrabold text-[9px] tracking-[2.5px] uppercase" style={{ color: '#E0157A' }}>{t('salsa')}</span>
                 </div>
                 {schedule.salsa.map((row) => (
-                  <div key={`salsa-${row.level}`}
+                  <div key={`salsa-${row.dayKey}-${row.level}`}
                     className="flex justify-between items-center py-2.5 border-b last:border-b-0 border-stone-100 rounded-lg px-2 -mx-2 hover:bg-stone-50 transition-colors">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: levelDotColor[row.levelColor] }} aria-label={row.levelColor} />
@@ -98,7 +98,7 @@ export default function Schedule() {
                   <span className="font-sans font-extrabold text-[9px] tracking-[2.5px] uppercase" style={{ color: '#00C9B1' }}>{t('bachata')}</span>
                 </div>
                 {schedule.bachata.map((row) => (
-                  <div key={`bachata-${row.level}`}
+                  <div key={`bachata-${row.dayKey}-${row.level}`}
                     className="flex justify-between items-center py-2.5 border-b last:border-b-0 border-stone-100 rounded-lg px-2 -mx-2 hover:bg-stone-50 transition-colors">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: levelDotColor[row.levelColor] }} aria-label={row.levelColor} />
