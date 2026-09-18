@@ -18,6 +18,7 @@ export interface CubanStyleSlot {
 // Real 2026-27 timetable, confirmed by Alicia (29-31 ago 2026). Ajustes puntuales confirmados por Gerard el 2-sep-2026
 // (Salsa Inicio 3, Salsa Intermedio 2, Bachata Avanzado — ver historial de commits de este archivo).
 // 14-sep-2026: horario de Bachata Inicio actualizado (Gerard) — Inicio 1 jue 19h, Inicio 2 mié 19h, Inicio 3 lun 21:30h + mar 20h.
+// 18-sep-2026: Bachata Inicio 1 (jue) pasa a 20h–21h (Gerard).
 export const schedule: { salsa: ClassSlot[]; bachata: ClassSlot[] } = {
   salsa: [
     { level: 'Inicio 1',     dayKey: 'thu', time: '21h–22h',       levelColor: 'inicio'     },
@@ -28,7 +29,7 @@ export const schedule: { salsa: ClassSlot[]; bachata: ClassSlot[] } = {
     { level: 'Avanzado',     dayKey: 'wed', time: '21h–22h',       levelColor: 'avanzado'   },
   ],
   bachata: [
-    { level: 'Inicio 1',     dayKey: 'thu', time: '19h–20h',       levelColor: 'inicio'     },
+    { level: 'Inicio 1',     dayKey: 'thu', time: '20h–21h',       levelColor: 'inicio'     },
     { level: 'Inicio 2',     dayKey: 'wed', time: '19h–20h',       levelColor: 'inicio'     },
     // Inicio 3 se imparte dos días por semana (confirmado por Gerard, 14-sep-2026).
     { level: 'Inicio 3',     dayKey: 'mon', time: '21:30h–22:30h', levelColor: 'inicio'     },
