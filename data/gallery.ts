@@ -56,4 +56,18 @@ export const galleryItems: GalleryItem[] = [
     poster:   '/videos/posters/taller-quechimba.jpg',
     credit:   '@pablorios.photography',
   },
+  {
+    id:       'g9',
+    title:    'Viernes en el ACM — Alicia y Pedro',
+    category: 'taller',
+    videoSrc: '/videos/taller-acm-viernes.mp4',
+    poster:   '/videos/posters/taller-acm-viernes.jpg',
+  },
+  {
+    id:       'g10',
+    title:    'QueChimba — taller en grupo con Alicia y Pedro',
+    category: 'taller',
+    videoSrc: '/videos/taller-quechimba-2.mp4',
+    poster:   '/videos/posters/taller-quechimba-2.jpg',
+  },
 ]
